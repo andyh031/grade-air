@@ -8,7 +8,10 @@ the final grade, but what if you wanted to see how you actually got that
 grade? This application will store all of your grades in a friendly and
 aesthetically pleasing user-interface so that you can look back and see
 how you performed in all of your classes, down to each assignment you
-handed in and each test you wrote. Likewise, the primary target audience
+handed in and each test you wrote. This application is meant to be used 
+as a grade tracker, where you upload grades while the course is still 
+in progress, and it will store these grades after the year is over
+and you start a new school year. Likewise, the primary target audience
 for this application would be students currently in school. 
 
 This project interests me because I have sometimes found myself handwriting
@@ -22,11 +25,8 @@ to yield a final grade.
 
 > ## User Stories
 - As a user, I want to add classes to my list of classes
-  - As a user, I want to give traits to each of these classes (teacher, subject, year taken, weightings)
-- As a user, I want to add grades to each of my classes
-  - As a user, I want to separate each of these grades into assignments, tests, quizzes, etc.
-- As a user, I want to see my classes displayed in different ways:
-  - All my classes in a given year
-  - All my classes specific to one subject
-  - All my classes sorted by grade
-- As a user, I want to have my GPA for each class be calculated by itself, both during the class (updates whenever I add a new grade) and when the class is over.
+  - As a user, I want to give traits to each of these classes (teacher, subject, year taken, weighting scheme)
+- As a user, I want to add grades(marks/scores) to each of my classes
+- As a user, I want to see my classes sorted alphabetically or by grade
+- As a user, I want to have my GPA for each class be calculated by itself in real time while I am taking a class (updates whenever I add a new grade).
+- As a user, I want to have an account that I can change (eg. first name and last name).
