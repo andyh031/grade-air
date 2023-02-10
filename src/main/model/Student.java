@@ -15,34 +15,34 @@ public class Student {
         this.courses = new ArrayList<>();
     }
 
-//    public int calculateGPA() {
-//        int total = 0;
-//        int count = 0;
-//        for (Course course : courses) {
-//            total += course.calculateCourseGrade();
-//            count++;
-//        }
-//        if (count == 0) {
-//            return 0;
-//        } else {
-//            return total / count;
-//        }
-//    }
+    public int calculateGPA() {
+        int total = 0;
+        for (Course course : courses) {
+            total += course.getCourseGrade();
+        }
+        if (courses.size() == 0) {
+            return 100;
+        } else {
+            return total / courses.size();
+        }
+    }
 
     public void sortCoursesAlphabetical() {
         Collections.sort(courses, Comparator.comparing(Course::getCourseName));
     }
 
     public void sortCoursesByGrade() {
-        Collections.sort(courses, Comparator.comparing(Course::getGrade));
+        Collections.sort(courses, Comparator.comparing(Course::getCourseGrade));
     }
-
-
 
     //MODIFIES: this
     //EFFECTS: adds a course to student's list of courses
     public void addCourse(Course course) {
         courses.add(course);
+    }
+
+    public void removeCourse(Course course) {
+        courses.remove(course);
     }
 
     //Getters

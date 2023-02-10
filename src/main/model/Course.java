@@ -7,61 +7,33 @@ public class Course {
     private String subject;
     private String teacher;
     private String gradeTaken;      // Grade 12, Grade 6, First Year University
-    private Scanner scanner;
-    private List<MarkEntry> markEntryList;
-    private double courseGrade;
-    private List<SingleWeighting> courseWeighting;
-    private HashMap<String, Integer> courseMap;
-    private int grade;
+    private int courseGrade;
+    private List<Weighting> weightingScheme;
 
     //EFFECTS: creates a new course with a name and subject
     public Course(String courseName, String subject) {
         this.courseName = courseName;
         this.subject = subject;
-        markEntryList = new LinkedList<>();
-        courseWeighting = new ArrayList<>();
-        courseMap = new HashMap<>();
+        weightingScheme = new ArrayList<>();
+        this.courseGrade = 100;
     }
 
-    public void addMark() {
-        MarkEntry mark = new MarkEntry();
-        markEntryList.add(mark);
+    public void addMark(String name, int mark, String category) {
+        MarkEntry markEntry = new MarkEntry(name, mark, category);
+        double total = 100;
+        double num = 0;
 
-        Integer count = courseMap.containsKey(mark.getCategory()) ? courseMap.get(mark.getCategory()) : 1;
-        courseMap.put(mark.getCategory(), count + 1);
-        calculateCourseGrade();
-    }
-
-    public void calculateCourseGrade() {
-        float grade = 0;
-        for (MarkEntry markEntry : markEntryList) {
-            float mark = markEntry.getMark() / (float)100;
-            String markCategory = markEntry.getCategory();
-            int weightOfCategory = 0;
-            float weightOfMark;
-            float weightedMark;
-
-            for (SingleWeighting singleWeighting : courseWeighting) {
-                if (markCategory.equals(singleWeighting.getCategory())) {
-                    weightOfCategory = singleWeighting.getWeight();
-                }
+        for (Weighting weight : weightingScheme) {
+            if (category.equals(weight.getCategory())) {
+                weight.addMarkEntry(markEntry);
             }
 
-            weightOfMark = weightOfCategory / courseMap.get(markCategory);
-            weightedMark = mark * weightOfMark;
-            grade += weightedMark;
+            if (weight.getMarksList().size() == 0) {
+                total -= weight.getWeight();
+            }
+            num += weight.calculateWeightedMark();
         }
-        this.grade = (int)grade;
-    }
-
-    public void initializeWeightings() {
-        int totalWeightSoFar = 0;
-        do {
-            courseWeighting.add(new SingleWeighting());
-            courseMap.put(courseWeighting.get(courseWeighting.size() - 1).getCategory(), 0);
-            totalWeightSoFar += courseWeighting.get(courseWeighting.size() - 1).getWeight();
-        } while (!(totalWeightSoFar == 100));
-        calculateCourseGrade();
+        this.courseGrade = (int)(num / total * 100);
     }
 
     public String makePrettyUpperCase(String str) {
@@ -87,12 +59,12 @@ public class Course {
         return this.gradeTaken;
     }
 
-    public List<MarkEntry> getMarkEntryList() {
-        return this.markEntryList;
+    public int getCourseGrade() {
+        return this.courseGrade;
     }
 
-    public int getGrade() {
-        return this.grade;
+    public List<Weighting> getWeightingScheme() {
+        return this.weightingScheme;
     }
 
     //Setters
