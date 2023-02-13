@@ -1,3 +1,5 @@
+// Represents a weighting in a course that also includes a list of mark entries within the specified weighting category
+
 package model;
 
 import java.util.ArrayList;
@@ -5,27 +7,32 @@ import java.util.List;
 
 public class Weighting {
     private String category;
-    private int weight;
+    private double weight;
     private List<MarkEntry> marksList;
 
+    //EFFECTS: creates a weighting with a category, numerical weight, and list of marks in that weighting
     public Weighting(String category, int weight) {
         this.category = category;
         this.weight = weight;
         this.marksList = new ArrayList<>();
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a mark entry to student's list of marks
     public void addMarkEntry(MarkEntry markEntry) {
         marksList.add(markEntry);
     }
 
+    //EFFECTS: retrieves all of the student's marks in a given weighting
     public String retrieveMarksToPrint() {
         String marks = "";
         for (MarkEntry markEntry : marksList) {
-            marks += markEntry.getName() + ": " + markEntry.getMark() + "\n";
+            marks += markEntry.getName() + ": " + (int)markEntry.getMark() + "\n";
         }
         return marks;
     }
 
+    //EFFECTS: returns a calculation of the weighted mark in a weighting
     public double calculateWeightedMark() {
         if (marksList.size() == 0) {
             return 0;
@@ -40,7 +47,7 @@ public class Weighting {
     }
 
     // Getters
-    public int getWeight() {
+    public double getWeight() {
         return this.weight;
     }
 

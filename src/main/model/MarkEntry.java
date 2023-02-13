@@ -1,15 +1,14 @@
+// Represents a mark within a student's weighting
+
 package model;
-
-import java.util.Scanner;
-
-import static java.util.Objects.isNull;
 
 public class MarkEntry {
     private String name;
     private String category;
-    private int mark;
+    private double mark;
 
-    public MarkEntry(String name, int mark, String category) {
+    //EFFECTS: creates a mark entry with the name of the mark, the mark received, and the category
+    public MarkEntry(String name, double mark, String category) {
         this.name = name;
         this.mark = mark;
         this.category = category;
@@ -23,7 +22,7 @@ public class MarkEntry {
         return this.category;
     }
 
-    public int getMark() {
+    public double getMark() {
         return this.mark;
     }
 

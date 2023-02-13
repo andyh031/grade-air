@@ -1,3 +1,5 @@
+// Basic console UI of GradeAir application
+
 package ui;
 
 import model.Course;
@@ -17,7 +19,6 @@ public class GradeAir {
     private static final String SUBJECT = "subject";
     private static final String TEACHER = "teacher";
     private static final String GRADE_TAKEN = "grade taken";
-    private static final String WEIGHTING_SCHEME = "weighting scheme";
     private static final String ADD_COURSE = "add course";
     private static final String REMOVE_COURSE = "remove course";
     private static final String VIEW_COURSE = "view course";
@@ -31,20 +32,13 @@ public class GradeAir {
     private Student student;
     private boolean runProgram;
 
-    public static void main(String[] args) {
-        GradeAir gradeAir = new GradeAir();
-        System.out.println("Welcome to GradeAir!\n");
-
-        gradeAir.createAccount();
-        gradeAir.end();
-    }
-
     //EFFECTS: launch GradeAir
     public GradeAir() {
         scanner = new Scanner(System.in);
         runProgram = true;
     }
 
+    //MODIFIES: Student
     //EFFECTS: create a new account on GradeAir
     public void createAccount() {
         System.out.println("Let's get started! Type in your information below:");
@@ -60,6 +54,7 @@ public class GradeAir {
         homepage();
     }
 
+    //MODIFIES: Student
     //EFFECTS: creates the homepage
     public void homepage() {
         System.out.println(student.getFirstName() + " " + student.getLastName());
@@ -76,6 +71,8 @@ public class GradeAir {
         }
     }
 
+    //MODIFIES: Student, Course
+    //EFFECTS: create grading scheme for course
     public void initializeWeightings(Course course) {
         int totalWeightSoFar = 0;
         do {
@@ -89,17 +86,19 @@ public class GradeAir {
         } while (!(totalWeightSoFar == 100));
     }
 
+    //MODIFIES: Student
     //EFFECTS: Jump to whichever 'tab' user decides to go to
     @SuppressWarnings("methodlength")
     public void parseInput(String command) {
         switch (command) {
             case ADD_COURSE:
                 parseAddCourse();
+                homepage();
                 break;
             case REMOVE_COURSE:
                 System.out.println("What course would you like to remove?");
                 String courseToRemove = makePrettyUpperCase(scanner.nextLine());
-                student.getCourses().removeIf(obj -> obj.getCourseName().equals(courseToRemove));
+                student.removeCourse(courseToRemove);
                 homepage();
             case SORT:
                 sort();
@@ -121,6 +120,8 @@ public class GradeAir {
         }
     }
 
+    //MODIFIES: Student, Course
+    //EFFECTS: add a course with a weighting scheme to student's courses
     public void parseAddCourse() {
         System.out.print("Enter the course name: ");
         String courseName = makePrettyUpperCase(scanner.nextLine());
@@ -131,9 +132,9 @@ public class GradeAir {
         System.out.println("Please assign a weighting scheme to the course (must add up to 100)");
         initializeWeightings(course);
         student.addCourse(course);
-        homepage();
     }
 
+    //MODIFIES: Student
     //EFFECTS: sorts courses according to what user wants
     public void sort() {
         System.out.println("How would you like to sort your courses?\n 'alphabetical' \n 'grade'");
@@ -141,11 +142,18 @@ public class GradeAir {
         switch (command) {
             case ALPHABETICAL:
                 student.sortCoursesAlphabetical();
+                break;
             case GRADE:
                 student.sortCoursesByGrade();
+                break;
+            default:
+                System.out.println("Could not understand your input, please try again");
+                sort();
+                break;
         }
     }
 
+    //REQUIRES: user inputs an existing course
     //EFFECTS: Let user view a course out of their list of courses
     public void viewCourses() {
         System.out.println("Which course would you like to view?");
@@ -158,6 +166,7 @@ public class GradeAir {
         }
     }
 
+    //MODIFIES: Course
     //EFFECTS: Show course details for one course
     public void showClassInfo(Course course) {
         System.out.println(course.getCourseName() + ": " + course.getCourseGrade() + "%");
@@ -169,7 +178,7 @@ public class GradeAir {
             System.out.println("Grade Taken: " + course.getGradeTaken());
         }
         displayMarks(course);
-        System.out.println("To add a mark, type " + ADD_MARK);
+        System.out.println("To add a mark, type '" + ADD_MARK + "'");
         System.out.println("To edit course info, type 'edit course', or press enter to go back home");
         String command = scanner.nextLine();
         if (command.equals("edit course")) {
@@ -180,6 +189,8 @@ public class GradeAir {
         }
     }
 
+    //MODIFIES: Course
+    //EFFECTS: add a mark to a course
     public void parseAddMark(Course course) {
         System.out.print("Name: ");
         String name = scanner.nextLine(); //TODO CAPITALIZE FIRST LETTER
@@ -187,44 +198,68 @@ public class GradeAir {
         int mark = Integer.parseInt(scanner.nextLine());
         System.out.println("Type of mark (must be of a type that you initialized in your weighting scheme): ");
         String category = makePrettyUpperCase(scanner.nextLine());
-        course.addMark(name, mark, category);
+        course.addMarkEntry(name, mark, category);
         showClassInfo(course);
     }
 
+    //MODIFIES: Course
     //EFFECTS: Update course specific fields upon user input
-    @SuppressWarnings("methodlength")
     public void editCourseInfo(Course course) {
         String command = makePrettyUserInput(scanner.nextLine());
         switch (command) {
             case COURSE_NAME:
-                System.out.print("Enter course name: ");
-                String opt1 = makePrettyUpperCase(scanner.nextLine());
-                course.setCourseName(opt1);
-                showClassInfo(course);
+                parseCourseName(course);
                 break;
             case SUBJECT:
-                System.out.print("Enter subject name: ");
-                String opt2 = makePrettyUpperCase(scanner.nextLine());
-                course.setSubject(opt2);
-                showClassInfo(course);
+                parseSubject(course);
                 break;
             case TEACHER:
-                System.out.print("Enter teacher name: ");
-                String opt3 = makePrettyUpperCase(scanner.nextLine());
-                course.setTeacher(opt3);
-                showClassInfo(course);
+                parseTeacher(course);
                 break;
             case GRADE_TAKEN:
-                System.out.print("Enter grade taken: ");
-                String opt4 = makePrettyUpperCase(scanner.nextLine());
-                course.setGradeTaken(opt4);
-                showClassInfo(course);
+                parseGradeTaken(course);
                 break;
             default:
                 System.out.println("Could not understand input, please try again");
                 editCourseInfo(course);
                 break;
         }
+    }
+
+    //MODIFIES: Course
+    //EFFECTS: change course name of a course
+    public void parseCourseName(Course course) {
+        System.out.print("Enter course name: ");
+        String str = makePrettyUpperCase(scanner.nextLine());
+        course.setCourseName(str);
+        showClassInfo(course);
+    }
+
+    //MODIFIES: Course
+    //EFFECTS: change subject name of a course
+    public void parseSubject(Course course) {
+        System.out.print("Enter subject name: ");
+        String str = makePrettyUpperCase(scanner.nextLine());
+        course.setSubject(str);
+        showClassInfo(course);
+    }
+
+    //MODIFIES: Course
+    //EFFECTS: change teacher name of a course
+    public void parseTeacher(Course course) {
+        System.out.print("Enter teacher name: ");
+        String str = makePrettyUpperCase(scanner.nextLine());
+        course.setTeacher(str);
+        showClassInfo(course);
+    }
+
+    //MODIFIES: Course
+    //EFFECTS: change grade taken of a course
+    public void parseGradeTaken(Course course) {
+        System.out.print("Enter grade taken: ");
+        String str = makePrettyUpperCase(scanner.nextLine());
+        course.setGradeTaken(str);
+        showClassInfo(course);
     }
 
     //EFFECTS: display mark for one course
@@ -253,6 +288,7 @@ public class GradeAir {
         }
     }
 
+    //MODIFIES: Student
     //EFFECTS: Update user account fields
     public void updateUserFields() {
         System.out.println("What field would you like to update?\n 'first name' \n 'last name'");

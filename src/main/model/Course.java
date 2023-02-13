@@ -1,3 +1,5 @@
+// Represents a single course in a student's list of courses
+
 package model;
 
 import java.util.*;
@@ -18,7 +20,9 @@ public class Course {
         this.courseGrade = 100;
     }
 
-    public void addMark(String name, int mark, String category) {
+    //MODIFIES: this
+    //EFFECTS: adds a mark with category to given category's weighting, and updates course grade automatically
+    public void addMarkEntry(String name, int mark, String category) {
         MarkEntry markEntry = new MarkEntry(name, mark, category);
         double total = 100;
         double num = 0;
@@ -34,12 +38,6 @@ public class Course {
             num += weight.calculateWeightedMark();
         }
         this.courseGrade = (int)(num / total * 100);
-    }
-
-    public String makePrettyUpperCase(String str) {
-        str = str.toUpperCase();
-        str = str.trim();
-        return str;
     }
 
     //Getters
