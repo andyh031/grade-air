@@ -14,6 +14,7 @@ public class MarkEntry {
         this.category = category;
     }
 
+    //Getters
     public String getName() {
         return this.name;
     }
@@ -25,9 +26,4 @@ public class MarkEntry {
     public double getMark() {
         return this.mark;
     }
-
-    public void setScore(int mark) {
-        this.mark = mark;
-    }
-
 }

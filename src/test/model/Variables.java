@@ -17,13 +17,10 @@ public abstract class Variables {
     protected MarkEntry a1;
     protected MarkEntry a2;
     protected MarkEntry a3;
-    protected MarkEntry a4;
-    protected MarkEntry a5;
     protected MarkEntry f1;
     protected MarkEntry participation;
     protected MarkEntry q1;
     protected MarkEntry q2;
-    protected MarkEntry q3;
     protected MarkEntry all1;
     protected MarkEntry all2;
 

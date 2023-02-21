@@ -1,6 +1,5 @@
 package model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,6 +61,12 @@ public class CourseTest extends Variables {
 
         course1.setGradeTaken("B");
         assertEquals("B", course1.getGradeTaken());
+
+        course1.setSubject("Biology");
+        assertEquals("Biology", course1.getSubject());
+
+        course1.setCourseName("ABC");
+        assertEquals("ABC", course1.getCourseName());
     }
     
 }

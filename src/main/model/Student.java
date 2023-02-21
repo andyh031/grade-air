@@ -1,4 +1,6 @@
-// Represents a student class with a first name, last name, and list of courses
+// Represents a student class with a first name, last name, and list of courses. A student can add a course onto
+// a list of their courses. For each course, they are required to assign a weighting scheme to it, which is
+// comprised of a list of single weightings. In each of these weightings, there is also a list of mark entries,
 
 package model;
 

@@ -25,7 +25,14 @@ public class StudentTest extends Variables {
 
         student.removeCourse("CPSC 110");
         assertEquals(1, student.getCourses().size());
+
+        student.removeCourse("A");
+        assertEquals(1, student.getCourses().size());
+
         student.removeCourse("CPSC 210");
+        assertEquals(0, student.getCourses().size());
+
+        student.removeCourse("A");
         assertEquals(0, student.getCourses().size());
     }
 
@@ -76,6 +83,15 @@ public class StudentTest extends Variables {
 
         assertEquals(course2, student.getCourses().get(0));
         assertEquals(course1, student.getCourses().get(1));
+    }
+
+    @Test
+    public void testSettersGetters() {
+        student.setFirstName("Bob");
+        student.setLastName("Li");
+
+        assertEquals("Bob", student.getFirstName());
+        assertEquals("Li", student.getLastName());
     }
 
 }
