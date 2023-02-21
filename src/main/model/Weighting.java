@@ -23,7 +23,7 @@ public class Weighting {
         marksList.add(markEntry);
     }
 
-    //EFFECTS: retrieves all of the student's marks in a given weighting
+    //EFFECTS: retrieves all of the student's marks in a given weighting to print
     public String retrieveMarksToPrint() {
         String marks = "";
         for (MarkEntry markEntry : marksList) {
@@ -34,10 +34,10 @@ public class Weighting {
 
     //EFFECTS: returns a calculation of the weighted mark in a weighting
     public double calculateWeightedMark() {
+        double mark = 0;
         if (marksList.size() == 0) {
-            return 0;
+            return mark;
         } else {
-            double mark = 0;
             for (MarkEntry markEntry : marksList) {
                 double weightedMark = weight / marksList.size() * markEntry.getMark() / 100;
                 mark += weightedMark;

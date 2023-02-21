@@ -3,6 +3,7 @@
 package ui;
 
 import model.Course;
+import model.MarkEntry;
 import model.Weighting;
 import model.Student;
 
@@ -198,7 +199,8 @@ public class GradeAir {
         int mark = Integer.parseInt(scanner.nextLine());
         System.out.println("Type of mark (must be of a type that you initialized in your weighting scheme): ");
         String category = makePrettyUpperCase(scanner.nextLine());
-        course.addMarkEntry(name, mark, category);
+        MarkEntry markEntry = new MarkEntry(name, mark, category);
+        course.addMarkEntry(markEntry);
         showClassInfo(course);
     }
 
@@ -298,13 +300,11 @@ public class GradeAir {
                 System.out.print("Enter first name: ");
                 String opt1 = scanner.nextLine();
                 student.setFirstName(opt1);
-                printOptions();
                 break;
             case LAST_NAME_FIELD:
                 System.out.print("Enter last name: ");
                 String opt2 = scanner.nextLine();
                 student.setLastName(opt2);
-                printOptions();
                 break;
             default:
                 System.out.println("Could not understand your input, please try again");

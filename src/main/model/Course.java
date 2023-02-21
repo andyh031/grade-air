@@ -22,13 +22,12 @@ public class Course {
 
     //MODIFIES: this
     //EFFECTS: adds a mark with category to given category's weighting, and updates course grade automatically
-    public void addMarkEntry(String name, int mark, String category) {
-        MarkEntry markEntry = new MarkEntry(name, mark, category);
+    public void addMarkEntry(MarkEntry markEntry) {
         double total = 100;
         double num = 0;
 
         for (Weighting weight : weightingScheme) {
-            if (category.equals(weight.getCategory())) {
+            if (markEntry.getCategory().equals(weight.getCategory())) {
                 weight.addMarkEntry(markEntry);
             }
 
@@ -37,7 +36,7 @@ public class Course {
             }
             num += weight.calculateWeightedMark();
         }
-        this.courseGrade = (int)(num / total * 100);
+        this.courseGrade = (int)Math.round((num / total * 100));
     }
 
     //Getters
