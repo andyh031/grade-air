@@ -72,8 +72,8 @@ public class StudentTest extends Variables {
 
         course2.addMarkEntry(all1);
         course1.addMarkEntry(all2);
-
         student.sortCoursesByGrade();
+
         assertEquals(course2, student.getCourses().get(0));
         assertEquals(course1, student.getCourses().get(1));
     }
