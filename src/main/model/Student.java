@@ -41,7 +41,7 @@ public class Student implements Writable {
 
     // EFFECTS: returns a calculation of the student's GPA over all courses
     public double calculateGPA() {
-        int total = 0;
+        double total = 0;
         for (Course course : courses) {
             total += course.getCourseGrade();
         }

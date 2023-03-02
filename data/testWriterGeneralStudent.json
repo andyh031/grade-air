@@ -1,0 +1,18 @@
+{
+    "courses": [
+        {
+            "course name": "BIOL 121",
+            "weightings": [],
+            "subject": "BIOLOGY",
+            "course grade": 100
+        },
+        {
+            "course name": "PHYS 106",
+            "weightings": [],
+            "subject": "PHYSICS",
+            "course grade": 100
+        }
+    ],
+    "last name": "B",
+    "first name": "A"
+}

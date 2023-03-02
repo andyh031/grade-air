@@ -40,8 +40,6 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // MAKE A STUDENT AND ADD COURSES TO STUDENT
-
     // EFFECTS: parses student from JSON object and returns it
     private Student parseStudent(JSONObject jsonObject) {
         String fname = jsonObject.getString("first name");
@@ -50,8 +48,6 @@ public class JsonReader {
         addCourses(student, jsonObject);
         return student;
     }
-
-    // FOR EACH COURSE, ADD COURSE TO STUDENT
 
     // MODIFIES: student
     // EFFECTS: parses courses from JSON object and adds them to student
@@ -63,14 +59,12 @@ public class JsonReader {
         }
     }
 
-    // ADDS ONE COURSE TO STUDENT
-
     // MODIFIES: student
     // EFFECTS: parses course from JSON object and adds it to student
     private void addCourse(Student student, JSONObject jsonObject) {
         String courseName = jsonObject.getString("course name");
         String subject = jsonObject.getString("subject");
-        int courseGrade = jsonObject.getInt("course grade");
+        double courseGrade = jsonObject.getDouble("course grade");
 
         if (jsonObject.has("teacher")) {
             String teacher = jsonObject.getString("teacher");
@@ -83,6 +77,8 @@ public class JsonReader {
             student.getCourses().add(course);
         }
     }
+
+
 
     private void addWeightings(Course course, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("weightings");
@@ -113,7 +109,7 @@ public class JsonReader {
     private void addMark(Weighting weight, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String category = jsonObject.getString("category");
-        int mark = jsonObject.getInt("mark");
+        double mark = jsonObject.getDouble("mark");
 
         MarkEntry markEntry = new MarkEntry(name, mark, category);
         weight.getMarksList().add(markEntry);

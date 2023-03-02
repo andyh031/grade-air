@@ -1,0 +1,33 @@
+{
+  "courses": [
+    {
+      "course name": "A",
+      "teacher": "MR. A",
+      "weightings": [{
+        "weight": 100,
+        "marks": [
+          {
+            "name": "a",
+            "category": "A",
+            "mark": 95
+          }
+        ],
+        "category": "Z"
+      }],
+      "subject": "BIOLOGY",
+      "course grade": 95
+    },
+    {
+      "course name": "PHYS 106",
+      "weightings": [{
+        "weight": 100,
+        "marks": [],
+        "category": "A"
+      }],
+      "subject": "PHYSICS",
+      "course grade": 100
+    }
+  ],
+  "last name": "abc",
+  "first name": "xyz"
+}

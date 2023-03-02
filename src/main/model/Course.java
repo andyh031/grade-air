@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class Course implements Writable {
@@ -24,7 +23,7 @@ public class Course implements Writable {
         weightingScheme = new ArrayList<>();
     }
 
-    public Course(String courseName, String subject, String teacher, int courseGrade) {
+    public Course(String courseName, String subject, String teacher, double courseGrade) {
         this.courseName = courseName;
         this.subject = subject;
         this.teacher = teacher;
@@ -32,7 +31,7 @@ public class Course implements Writable {
         weightingScheme = new ArrayList<>();
     }
 
-    public Course(String courseName, String subject, int courseGrade) {
+    public Course(String courseName, String subject, double courseGrade) {
         this.courseName = courseName;
         this.subject = subject;
         this.courseGrade = courseGrade;
@@ -57,7 +56,6 @@ public class Course implements Writable {
             num += weight.calculateWeightedMark();
         }
         this.courseGrade = (num / total * 100);
-//        this.courseGrade = (int)Math.round((num / total * 100));
     }
 
     //Getters

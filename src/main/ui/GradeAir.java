@@ -1,5 +1,6 @@
 // Basic console UI of GradeAir application
 //TODO View weighting scheme
+//TODO initialize weighting scheme junk, throwing exceptions
 
 package ui;
 
@@ -53,6 +54,26 @@ public class GradeAir {
         runProgram = true;
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+    }
+
+    // EFFECTS: login screen: if there is account data, asks if user would like to load it. If not, create new account.
+    public void login() {
+        System.out.println("Welcome to GradeAir\n");
+        try {
+            jsonReader.read();
+            System.out.println("Looks like you already have an account. Would you like to load it? y or n?");
+            String str = makePrettyUserInput(scanner.nextLine());
+            if (str.equals("y")) {
+                loadStudent();
+                homepage();
+            } else if (str.equals("n")) {
+                createAccount();
+            } else {
+                login();
+            }
+        } catch (IOException e) {
+            createAccount();
+        }
     }
 
     //MODIFIES: Student
@@ -116,10 +137,6 @@ public class GradeAir {
                 saveStudent();
                 homepage();
                 break;
-            case LOAD:
-                loadStudent();
-                homepage();
-                break;
             case REMOVE_COURSE:
                 System.out.println("What course would you like to remove?");
                 String courseToRemove = makePrettyUpperCase(scanner.nextLine());
@@ -145,6 +162,7 @@ public class GradeAir {
         }
     }
 
+    //EFFECTS: quits the program, asking if the user would like to save before termination
     public void quit() {
         System.out.println("Would you like to save? y or n?");
         String cmd = scanner.nextLine();
@@ -232,9 +250,9 @@ public class GradeAir {
     //EFFECTS: add a mark to a course
     public void parseAddMark(Course course) {
         System.out.print("Name: ");
-        String name = scanner.nextLine(); //TODO CAPITALIZE FIRST LETTER
+        String name = scanner.nextLine();
         System.out.print("Mark from 0-100 (press enter if no mark yet): ");
-        int mark = Integer.parseInt(scanner.nextLine());
+        double mark = Double.parseDouble(scanner.nextLine());
         System.out.println("Type of mark (must be of a type that you initialized in your weighting scheme): ");
         String category = makePrettyUpperCase(scanner.nextLine());
         MarkEntry markEntry = new MarkEntry(name, mark, category);
@@ -363,7 +381,6 @@ public class GradeAir {
         }
         System.out.println("To view your account, type '" + VIEW_ACCOUNT + "'");
         System.out.println("To save, type '" + SAVE + "'");
-        System.out.println("To load info, type '" + LOAD + "'");
         System.out.println(("To quit the application, type '" + QUIT + "'"));
     }
 
@@ -395,6 +412,7 @@ public class GradeAir {
         runProgram = false;
     }
 
+    //MODIFIES: this
     // EFFECTS: saves the workroom to file
     private void saveStudent() {
         try {
@@ -412,7 +430,8 @@ public class GradeAir {
     private void loadStudent() {
         try {
             student = jsonReader.read();
-            System.out.println("Loaded " + student.getFirstName() + " " + student.getLastName() + " from " + JSON_STORE);
+            System.out.println("Loaded "
+                    + student.getFirstName() + " " + student.getLastName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

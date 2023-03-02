@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Weighting implements Writable {
     private String category;
-    private double weight;
+    private int weight;
     private List<MarkEntry> marksList;
 
     //EFFECTS: creates a weighting with a category, numerical weight, and list of marks in that weighting
