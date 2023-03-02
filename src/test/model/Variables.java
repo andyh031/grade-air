@@ -48,10 +48,10 @@ public abstract class Variables {
         a2 = new MarkEntry("a2", 80, "assignment");
         a3 = new MarkEntry("a3", 95, "assignment");
         f1 = new MarkEntry("f1", 70, "final");
-        participation = new MarkEntry("participation", 70, "participation");
+        participation = new MarkEntry("participation", 90, "participation");
         q1 = new MarkEntry("q1", 97, "quiz");
         q2 = new MarkEntry("q2", 92, "quiz");
-        all1 = new MarkEntry("all1", 93, "all");
-        all2 = new MarkEntry("all2", 78, "all");
+        all1 = new MarkEntry("all1", 92, "all");
+        all2 = new MarkEntry("all2", 80, "all");
     }
 }

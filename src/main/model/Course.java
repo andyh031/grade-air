@@ -2,23 +2,43 @@
 
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.text.DecimalFormat;
 import java.util.*;
 
-public class Course {
+public class Course implements Writable {
     private String courseName;
     private String subject;
     private String teacher;
-    private String gradeTaken;      // Grade 12, Grade 6, First Year University
-    private int courseGrade;
+    private double courseGrade;
     private List<Weighting> weightingScheme;
 
     //EFFECTS: creates a new course with a name and subject
     public Course(String courseName, String subject) {
         this.courseName = courseName;
         this.subject = subject;
-        weightingScheme = new ArrayList<>();
         this.courseGrade = 100;
+        weightingScheme = new ArrayList<>();
     }
+
+    public Course(String courseName, String subject, String teacher, int courseGrade) {
+        this.courseName = courseName;
+        this.subject = subject;
+        this.teacher = teacher;
+        this.courseGrade = courseGrade;
+        weightingScheme = new ArrayList<>();
+    }
+
+    public Course(String courseName, String subject, int courseGrade) {
+        this.courseName = courseName;
+        this.subject = subject;
+        this.courseGrade = courseGrade;
+        weightingScheme = new ArrayList<>();
+    }
+
 
     //MODIFIES: this
     //EFFECTS: adds a mark with category to given category's weighting, and updates course grade automatically
@@ -36,7 +56,8 @@ public class Course {
             }
             num += weight.calculateWeightedMark();
         }
-        this.courseGrade = (int)Math.round((num / total * 100));
+        this.courseGrade = (num / total * 100);
+//        this.courseGrade = (int)Math.round((num / total * 100));
     }
 
     //Getters
@@ -52,11 +73,7 @@ public class Course {
         return this.teacher;
     }
 
-    public String getGradeTaken() {
-        return this.gradeTaken;
-    }
-
-    public int getCourseGrade() {
+    public double getCourseGrade() {
         return this.courseGrade;
     }
 
@@ -77,7 +94,25 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public void setGradeTaken(String gradeTaken) {
-        this.gradeTaken = gradeTaken;
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("course name", courseName);
+        json.put("subject", subject);
+        json.put("teacher", teacher);
+        json.put("course grade", courseGrade);
+        json.put("weightings", weightingsToJson());
+        return json;
+    }
+
+    private JSONArray weightingsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Weighting w : weightingScheme) {
+            jsonArray.put(w.toJson());
+        }
+
+        return jsonArray;
+
     }
 }

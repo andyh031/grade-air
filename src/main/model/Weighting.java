@@ -2,10 +2,14 @@
 
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Weighting {
+public class Weighting implements Writable {
     private String category;
     private double weight;
     private List<MarkEntry> marksList;
@@ -27,7 +31,7 @@ public class Weighting {
     public String retrieveMarksToPrint() {
         String marks = "";
         for (MarkEntry markEntry : marksList) {
-            marks += markEntry.getName() + ": " + (int)markEntry.getMark() + "\n";
+            marks += markEntry.getName() + ": " + (int)markEntry.getMark() + "%\n";
         }
         return marks;
     }
@@ -35,15 +39,11 @@ public class Weighting {
     //EFFECTS: returns a calculation of the weighted mark in a weighting
     public double calculateWeightedMark() {
         double mark = 0;
-        if (marksList.size() == 0) {
-            return mark;
-        } else {
-            for (MarkEntry markEntry : marksList) {
-                double weightedMark = weight / marksList.size() * markEntry.getMark() / 100;
-                mark += weightedMark;
-            }
-            return mark;
+        for (MarkEntry markEntry : marksList) {
+            double weightedMark = weight / marksList.size() * markEntry.getMark() / 100;
+            mark += weightedMark;
         }
+        return mark;
     }
 
     // Getters
@@ -57,5 +57,24 @@ public class Weighting {
 
     public String getCategory() {
         return this.category;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("category", category);
+        json.put("weight", weight);
+        json.put("marks", marksToJson());
+        return json;
+    }
+
+    private JSONArray marksToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (MarkEntry m : marksList) {
+            jsonArray.put(m.toJson());
+        }
+
+        return jsonArray;
     }
 }

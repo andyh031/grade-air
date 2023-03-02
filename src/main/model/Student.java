@@ -4,10 +4,13 @@
 
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.*;
 
-public class Student {
-
+public class Student implements Writable {
     private List<Course> courses;
     private String firstName;
     private String lastName;
@@ -37,7 +40,7 @@ public class Student {
     }
 
     // EFFECTS: returns a calculation of the student's GPA over all courses
-    public int calculateGPA() {
+    public double calculateGPA() {
         int total = 0;
         for (Course course : courses) {
             total += course.getCourseGrade();
@@ -82,5 +85,24 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("first name", firstName);
+        json.put("last name", lastName);
+        json.put("courses", coursesToJson());
+        return json;
+    }
+
+    private JSONArray coursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course course : courses) {
+            jsonArray.put(course.toJson());
+        }
+
+        return jsonArray;
     }
 }

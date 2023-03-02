@@ -18,10 +18,10 @@ public class CourseTest extends Variables {
     public void testAddMarkEntryWithOneOverallWeighting() {
         course1.getWeightingScheme().add(allWeight);
         course1.addMarkEntry(all1);
-        assertEquals(93, course1.getCourseGrade());
+        assertEquals(92, course1.getCourseGrade());
 
         course1.addMarkEntry(all2);
-        assertEquals(Math.round((all1.getMark() + all2.getMark())/2), course1.getCourseGrade());
+        assertEquals((all1.getMark() + all2.getMark())/2, course1.getCourseGrade());
     }
 
     @Test
@@ -31,6 +31,7 @@ public class CourseTest extends Variables {
         course1.getWeightingScheme().add(finalWeight);
         course1.getWeightingScheme().add(participationWeight);
         course1.getWeightingScheme().add(quizWeight);
+        assertEquals(5, course1.getWeightingScheme().size());
 
         course1.addMarkEntry(mt1);
         course1.addMarkEntry(mt2);
@@ -42,25 +43,22 @@ public class CourseTest extends Variables {
         assertEquals( Math.round((mtWeight.calculateWeightedMark() + assignmentWeight.calculateWeightedMark()) / 50 * 100) , course1.getCourseGrade());
 
         course1.addMarkEntry(participation);
-        assertEquals( Math.round((mtWeight.calculateWeightedMark() + assignmentWeight.calculateWeightedMark() + participationWeight.calculateWeightedMark()) / 53 * 100), course1.getCourseGrade());
+        assertEquals((mtWeight.calculateWeightedMark() + assignmentWeight.calculateWeightedMark() + participationWeight.calculateWeightedMark()) / 53 * 100, course1.getCourseGrade());
 
         course1.addMarkEntry(q1);
         course1.addMarkEntry(q2);
-        assertEquals( Math.round((mtWeight.calculateWeightedMark() + assignmentWeight.calculateWeightedMark() + participationWeight.calculateWeightedMark() +
-                quizWeight.calculateWeightedMark()) / 60 * 100), course1.getCourseGrade());
+        assertEquals((mtWeight.calculateWeightedMark() + assignmentWeight.calculateWeightedMark() + participationWeight.calculateWeightedMark() +
+                quizWeight.calculateWeightedMark()) / 60 * 100, course1.getCourseGrade());
 
         course1.addMarkEntry(f1);
-        assertEquals(Math.round((mtWeight.calculateWeightedMark() + assignmentWeight.calculateWeightedMark() + participationWeight.calculateWeightedMark() +
-                quizWeight.calculateWeightedMark() + finalWeight.calculateWeightedMark())), course1.getCourseGrade());
+        assertEquals((mtWeight.calculateWeightedMark() + assignmentWeight.calculateWeightedMark() + participationWeight.calculateWeightedMark() +
+                quizWeight.calculateWeightedMark() + finalWeight.calculateWeightedMark()), course1.getCourseGrade());
     }
 
     @Test
     public void testSettersGetters() {
         course1.setTeacher("A");
         assertEquals("A", course1.getTeacher());
-
-        course1.setGradeTaken("B");
-        assertEquals("B", course1.getGradeTaken());
 
         course1.setSubject("Biology");
         assertEquals("Biology", course1.getSubject());

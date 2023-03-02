@@ -31,10 +31,10 @@ public class WeightingTest extends Variables {
         assertEquals("", str);
 
         mtWeight.addMarkEntry(mt1);
-        assertEquals("mt1: 100\n", mtWeight.retrieveMarksToPrint());
+        assertEquals("mt1: 100%\n", mtWeight.retrieveMarksToPrint());
 
         mtWeight.addMarkEntry(mt2);
-        assertEquals("mt1: 100\nmt2: 80\n", mtWeight.retrieveMarksToPrint());
+        assertEquals("mt1: 100%\nmt2: 80%\n", mtWeight.retrieveMarksToPrint());
     }
 
     @Test

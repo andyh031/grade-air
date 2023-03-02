@@ -2,7 +2,10 @@
 
 package model;
 
-public class MarkEntry {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class MarkEntry implements Writable {
     private String name;
     private String category;
     private double mark;
@@ -25,5 +28,14 @@ public class MarkEntry {
 
     public double getMark() {
         return this.mark;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("category", category);
+        json.put("mark", mark);
+        return json;
     }
 }

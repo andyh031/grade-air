@@ -30,3 +30,8 @@ to yield a final grade.
 - As a user, I want to see my classes sorted alphabetically or by grade
 - As a user, I want to have my GPA for each class be calculated by itself in real time while I am taking a class (updates whenever I add a new grade).
 - As a user, I want to have an account that I can change (eg. first name and last name).
+- As a user, I want to be able to have the option to save all my grades and classes
+- As a user, I want to be able to reload all my progress (grades and classes) from where I left off.
+
+> ## Citations
+- Used the JsonSerializationDemo project provided by UBC.

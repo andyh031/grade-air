@@ -1,4 +1,5 @@
 // Basic console UI of GradeAir application
+//TODO View weighting scheme
 
 package ui;
 
@@ -6,12 +7,20 @@ import model.Course;
 import model.MarkEntry;
 import model.Weighting;
 import model.Student;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import static java.util.Objects.isNull;
 
 public class GradeAir {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
     private static final String ADD_MARK = "add mark";
     private static final String SORT = "sort";
     private static final String ALPHABETICAL = "alphabetical";
@@ -19,7 +28,6 @@ public class GradeAir {
     private static final String COURSE_NAME = "course name";
     private static final String SUBJECT = "subject";
     private static final String TEACHER = "teacher";
-    private static final String GRADE_TAKEN = "grade taken";
     private static final String ADD_COURSE = "add course";
     private static final String REMOVE_COURSE = "remove course";
     private static final String VIEW_COURSE = "view course";
@@ -28,15 +36,23 @@ public class GradeAir {
     private static final String LAST_NAME_FIELD = "last name";
     private static final String VIEW_ACCOUNT = "view account";
     private static final String QUIT = "quit";
+    private static final String SAVE = "save";
+    private static final String LOAD = "load";
 
+
+    private static final String JSON_STORE = "./data/student.json";
     private Scanner scanner;
     private Student student;
     private boolean runProgram;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: launch GradeAir
     public GradeAir() {
         scanner = new Scanner(System.in);
         runProgram = true;
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     //MODIFIES: Student
@@ -50,7 +66,7 @@ public class GradeAir {
         String lname = scanner.nextLine();
 
         student = new Student(fname, lname);
-        System.out.println("Thanks for signing up for GradeAir!\n");
+        System.out.println("Thanks for signing up for GradeAir!");
 
         homepage();
     }
@@ -58,8 +74,8 @@ public class GradeAir {
     //MODIFIES: Student
     //EFFECTS: creates the homepage
     public void homepage() {
-        System.out.println(student.getFirstName() + " " + student.getLastName());
-        System.out.println("Overall GPA: " + student.calculateGPA() + "%");
+        System.out.println("\n" + student.getFirstName() + " " + student.getLastName());
+        System.out.println("Overall GPA: " + df.format(student.calculateGPA()) + "%");
         displayCourses();
         printOptions();
 
@@ -96,6 +112,14 @@ public class GradeAir {
                 parseAddCourse();
                 homepage();
                 break;
+            case SAVE:
+                saveStudent();
+                homepage();
+                break;
+            case LOAD:
+                loadStudent();
+                homepage();
+                break;
             case REMOVE_COURSE:
                 System.out.println("What course would you like to remove?");
                 String courseToRemove = makePrettyUpperCase(scanner.nextLine());
@@ -113,11 +137,24 @@ public class GradeAir {
                 homepage();
                 break;
             case QUIT:
-                runProgram = false;
+                quit();
                 break;
             default:
                 System.out.println("Could not understand your input, please try again");
                 break;
+        }
+    }
+
+    public void quit() {
+        System.out.println("Would you like to save? y or n?");
+        String cmd = scanner.nextLine();
+        if (cmd.equals("y")) {
+            saveStudent();
+            runProgram = false;
+        } else if (cmd.equals("n")) {
+            runProgram = false;
+        } else {
+            quit();
         }
     }
 
@@ -170,18 +207,19 @@ public class GradeAir {
     //MODIFIES: Course
     //EFFECTS: Show course details for one course
     public void showClassInfo(Course course) {
-        System.out.println(course.getCourseName() + ": " + course.getCourseGrade() + "%");
+        System.out.println(course.getCourseName() + ": " + df.format(course.getCourseGrade()) + "%");
         System.out.println("Subject: " + course.getSubject());
+
         if (!isNull(course.getTeacher())) {
             System.out.println("Teacher: " + course.getTeacher());
         }
-        if (!isNull(course.getGradeTaken())) {
-            System.out.println("Grade Taken: " + course.getGradeTaken());
-        }
+
         displayMarks(course);
+
         System.out.println("To add a mark, type '" + ADD_MARK + "'");
         System.out.println("To edit course info, type 'edit course', or press enter to go back home");
         String command = scanner.nextLine();
+
         if (command.equals("edit course")) {
             printCourseOptions();
             editCourseInfo(course);
@@ -218,9 +256,6 @@ public class GradeAir {
             case TEACHER:
                 parseTeacher(course);
                 break;
-            case GRADE_TAKEN:
-                parseGradeTaken(course);
-                break;
             default:
                 System.out.println("Could not understand input, please try again");
                 editCourseInfo(course);
@@ -255,15 +290,6 @@ public class GradeAir {
         showClassInfo(course);
     }
 
-    //MODIFIES: Course
-    //EFFECTS: change grade taken of a course
-    public void parseGradeTaken(Course course) {
-        System.out.print("Enter grade taken: ");
-        String str = makePrettyUpperCase(scanner.nextLine());
-        course.setGradeTaken(str);
-        showClassInfo(course);
-    }
-
     //EFFECTS: display mark for one course
     public void displayMarks(Course course) {
         System.out.println("Marks: ");
@@ -285,7 +311,7 @@ public class GradeAir {
             System.out.println("You have no classes added");
         } else {
             for (Course course : student.getCourses()) {
-                System.out.println(course.getCourseName() + ": " + course.getCourseGrade() + "%");
+                System.out.println(course.getCourseName() + ": " + df.format(course.getCourseGrade()) + "%");
             }
         }
     }
@@ -336,6 +362,8 @@ public class GradeAir {
             System.out.println("\nTo add a course, type '" + ADD_COURSE + "'");
         }
         System.out.println("To view your account, type '" + VIEW_ACCOUNT + "'");
+        System.out.println("To save, type '" + SAVE + "'");
+        System.out.println("To load info, type '" + LOAD + "'");
         System.out.println(("To quit the application, type '" + QUIT + "'"));
     }
 
@@ -344,7 +372,6 @@ public class GradeAir {
         System.out.println("To change course name, type '" + COURSE_NAME + "'");
         System.out.println("To change the subject, type '" + SUBJECT + "'");
         System.out.println("To change teacher name, type '" + TEACHER + "'");
-        System.out.println("To change the grade taken, type '" + GRADE_TAKEN + "'");
     }
 
     //EFFECTS: makes user input lowercase and no white space
@@ -365,5 +392,29 @@ public class GradeAir {
     public void end() {
         System.out.println("Quitting...");
         scanner.close();
+        runProgram = false;
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveStudent() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(student);
+            jsonWriter.close();
+            System.out.println("Saved " + student.getFirstName() + " " + student.getLastName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadStudent() {
+        try {
+            student = jsonReader.read();
+            System.out.println("Loaded " + student.getFirstName() + " " + student.getLastName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
