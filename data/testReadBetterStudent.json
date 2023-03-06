@@ -1,0 +1,29 @@
+{
+  "courses": [{
+    "course name": "A",
+    "weightings": [
+      {
+        "weight": 50,
+        "marks": [{
+          "name": "a",
+          "category": "A",
+          "mark": 100
+        }],
+        "category": "A"
+      },
+      {
+        "weight": 50,
+        "marks": [{
+          "name": "b",
+          "category": "B",
+          "mark": 50
+        }],
+        "category": "B"
+      }
+    ],
+    "subject": "A",
+    "course grade": 75
+  }],
+  "last name": "hu",
+  "first name": "andy"
+}

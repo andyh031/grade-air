@@ -2,9 +2,10 @@
     "courses": [
         {
             "course name": "BIOL 121",
+            "teacher": "MR. A",
             "weightings": [],
             "subject": "BIOLOGY",
-            "course grade": 100
+            "course grade": 90
         },
         {
             "course name": "PHYS 106",

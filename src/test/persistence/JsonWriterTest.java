@@ -59,7 +59,7 @@ public class JsonWriterTest extends JsonTest {
             assertEquals("B", student.getLastName());
             List<Course> courses = student.getCourses();
             assertEquals(2, courses.size());
-            checkCourse("BIOL 121", "BIOLOGY", "MR. A", 90, courses.get(0));
+            checkCourse("BIOL 121", "MR. A","BIOLOGY", 90, courses.get(0));
             checkCourse("PHYS 106", "PHYSICS", courses.get(1));
 
         } catch (IOException e) {

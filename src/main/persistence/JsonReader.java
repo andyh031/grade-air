@@ -16,12 +16,12 @@ import java.util.stream.Stream;
 public class JsonReader {
     private String source;
 
-    // EFFECTS: constructs reader from source file
+    // EFFECTS: constructs student from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it,
+    // EFFECTS: reads student from file and returns it,
     //          throws IOException if error occurs reading data from file
     public Student read() throws IOException {
         String jsonData = readFile(source);
@@ -39,6 +39,7 @@ public class JsonReader {
 
         return contentBuilder.toString();
     }
+
 
     // EFFECTS: parses student from JSON object and returns it
     private Student parseStudent(JSONObject jsonObject) {
@@ -78,8 +79,8 @@ public class JsonReader {
         }
     }
 
-
-
+    //MODIFIES: course
+    //EFFECTS: parses weightings from JSON object and adds them to course
     private void addWeightings(Course course, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("weightings");
         for (Object json : jsonArray) {
@@ -88,6 +89,8 @@ public class JsonReader {
         }
     }
 
+    //MODIFIES: course
+    //EFFECTS: parses weighting from JSON object and adds it to course
     private void addWeighting(Course course, JSONObject jsonObject) {
         String category = jsonObject.getString("category");
         int weight = jsonObject.getInt("weight");
@@ -97,7 +100,8 @@ public class JsonReader {
         course.getWeightingScheme().add(weighting);
     }
 
-
+    //MODIFIES: weighting
+    //EFFECTS: parses mark entries from JSON object and adds them to weighting
     private void addMarkEntries(Weighting weighting, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("marks");
         for (Object json : jsonArray) {
@@ -106,6 +110,8 @@ public class JsonReader {
         }
     }
 
+    //MODIFIES: course
+    //EFFECTS: parses mark entry from JSON object and adds it to course
     private void addMark(Weighting weight, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String category = jsonObject.getString("category");
