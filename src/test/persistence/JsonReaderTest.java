@@ -2,7 +2,6 @@ package persistence;
 
 import model.Course;
 import model.Student;
-import model.Weighting;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

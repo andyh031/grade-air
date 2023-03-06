@@ -413,7 +413,7 @@ public class GradeAir {
     }
 
     //MODIFIES: this
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves the student to file
     private void saveStudent() {
         try {
             jsonWriter.open();
@@ -426,7 +426,7 @@ public class GradeAir {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads student from file
     private void loadStudent() {
         try {
             student = jsonReader.read();

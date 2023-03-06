@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Course;
+import model.MarkEntry;
 import model.Student;
 import org.junit.jupiter.api.Test;
 
@@ -66,4 +67,5 @@ public class JsonWriterTest extends JsonTest {
             fail("Exception should not have been thrown");
         }
     }
+
 }

@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,6 +66,23 @@ public class CourseTest extends Variables {
 
         course1.setCourseName("ABC");
         assertEquals("ABC", course1.getCourseName());
+    }
+
+    @Test
+    public void testCourseToJson() {
+        JSONObject json = course1.toJson();
+        assertEquals("{\"course name\":\"CPSC 110\",\"weightings\":[],\"subject\":" +
+                "\"Computer Science\",\"course grade\":100}", json.toString());
+    }
+
+    @Test
+    public void testCourseMultipleWeightingsJson() {
+        course1.getWeightingScheme().add(mtWeight);
+        course1.getWeightingScheme().add(finalWeight);
+        JSONObject json = course1.toJson();
+        assertEquals("{\"course name\":\"CPSC 110\",\"weightings\":[{\"weight\":30,\"marks\":[],\"category\":" +
+                "\"midterm\"},{\"weight\":40,\"marks\":[],\"category\":\"final\"}],\"subject\":" +
+                "\"Computer Science\",\"course grade\":100}", json.toString());
     }
     
 }

@@ -38,4 +38,5 @@ public class MarkEntry implements Writable {
         json.put("mark", mark);
         return json;
     }
+
 }

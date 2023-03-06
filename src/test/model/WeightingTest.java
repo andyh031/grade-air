@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,5 +48,21 @@ public class WeightingTest extends Variables {
         mtWeight.addMarkEntry(mt2);
         mark = mtWeight.calculateWeightedMark();
         assertEquals( mtWeight.getWeight() / mtWeight.getMarksList().size() * (mt1.getMark() + mt2.getMark()) / 100, mark);
+    }
+
+    @Test
+    public void testWeightingToJson() {
+        JSONObject json = mtWeight.toJson();
+        assertEquals("{\"weight\":30,\"marks\":[],\"category\":\"midterm\"}", json.toString());
+    }
+
+    @Test
+    public void testWeightingMultipleMarksJson() {
+        mtWeight.addMarkEntry(mt1);
+        mtWeight.addMarkEntry(mt2);
+        JSONObject json = mtWeight.toJson();
+        assertEquals("{\"weight\":30,\"marks\":[{\"name\":\"mt1\",\"category\":" +
+                "\"midterm\",\"mark\":100},{\"name\":\"mt2\",\"category\":\"midterm\",\"mark\":80}],\"category\":" +
+                "\"midterm\"}", json.toString());
     }
 }
