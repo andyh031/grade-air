@@ -1,10 +1,17 @@
 package model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StudentTest extends Variables {
+public class StudentTest extends CourseTest {
+    protected Student student;
+
+    @BeforeEach
+    public void setup3() {
+        student = new Student("Andy", "Hu");
+    }
 
     @Test
     public void testStudentConstructor() {

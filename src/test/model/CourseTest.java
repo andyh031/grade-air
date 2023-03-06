@@ -1,11 +1,20 @@
 package model;
 
 import org.json.JSONObject;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CourseTest extends Variables {
+public class CourseTest extends WeightingTest {
+    protected Course course1;
+    protected Course course2;
+
+    @BeforeEach
+    public void setup2() {
+        course1 = new Course("CPSC 110", "Computer Science");
+        course2 = new Course("CPSC 210", "Computer Science");
+    }
 
     @Test
     public void testConstructor() {

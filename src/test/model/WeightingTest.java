@@ -1,11 +1,28 @@
 package model;
 
 import org.json.JSONObject;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class WeightingTest extends Variables {
+public class WeightingTest extends MarkEntryTest {
+    protected Weighting mtWeight;
+    protected Weighting assignmentWeight;
+    protected Weighting finalWeight;
+    protected Weighting participationWeight;
+    protected Weighting quizWeight;
+    protected Weighting allWeight;
+
+    @BeforeEach
+    public void setup() {
+        mtWeight = new Weighting("midterm", 30);
+        assignmentWeight = new Weighting("assignment", 20);
+        finalWeight = new Weighting("final", 40);
+        participationWeight = new Weighting("participation", 3);
+        quizWeight = new Weighting("quiz", 7);
+        allWeight = new Weighting("all", 100);
+    }
 
     @Test
     public void testConstructor() {
