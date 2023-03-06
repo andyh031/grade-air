@@ -40,7 +40,7 @@ public class Weighting implements Writable {
     public double calculateWeightedMark() {
         double mark = 0;
         for (MarkEntry markEntry : marksList) {
-            double weightedMark = weight / marksList.size() * markEntry.getMark() / 100;
+            double weightedMark = (double)weight / marksList.size() * markEntry.getMark() / 100;
             mark += weightedMark;
         }
         return mark;
@@ -59,6 +59,7 @@ public class Weighting implements Writable {
         return this.category;
     }
 
+    // EFFECTS: creates a weighting JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -68,6 +69,7 @@ public class Weighting implements Writable {
         return json;
     }
 
+    // EFFECTS: puts marks into weighting JSON object
     private JSONArray marksToJson() {
         JSONArray jsonArray = new JSONArray();
 

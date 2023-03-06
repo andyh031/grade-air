@@ -1,3 +1,5 @@
+// Data persistence so that users can save their progress, by having a file reader that can extract information.
+
 package persistence;
 
 import model.Course;

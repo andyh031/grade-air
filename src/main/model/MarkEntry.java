@@ -30,6 +30,7 @@ public class MarkEntry implements Writable {
         return this.mark;
     }
 
+    // EFFECTS: creates a mark entry JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

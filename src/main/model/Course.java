@@ -92,6 +92,7 @@ public class Course implements Writable {
         this.teacher = teacher;
     }
 
+    // EFFECTS: creates a course JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -103,6 +104,7 @@ public class Course implements Writable {
         return json;
     }
 
+    // EFFECTS: puts weightings into course JSON object
     private JSONArray weightingsToJson() {
         JSONArray jsonArray = new JSONArray();
 

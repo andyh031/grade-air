@@ -55,13 +55,13 @@ public class Student implements Writable {
     //MODIFIES: this
     //EFFECTS: sorts the courses in alphabetical order (a -> z)
     public void sortCoursesAlphabetical() {
-        Collections.sort(courses, Comparator.comparing(Course::getCourseName));
+        courses.sort(Comparator.comparing(Course::getCourseName));
     }
 
     //MODIFIES: this
     //EFFECTS: sorts the courses by grade achieved (highest -> lowest)
     public void sortCoursesByGrade() {
-        Collections.sort(courses, Comparator.comparing(Course::getCourseGrade));
+        courses.sort(Comparator.comparing(Course::getCourseGrade));
         Collections.reverse(courses);
     }
 
@@ -87,6 +87,7 @@ public class Student implements Writable {
         this.lastName = lastName;
     }
 
+    // EFFECTS: creates a student JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -96,6 +97,7 @@ public class Student implements Writable {
         return json;
     }
 
+    // EFFECTS: puts courses into student JSON object
     private JSONArray coursesToJson() {
         JSONArray jsonArray = new JSONArray();
 

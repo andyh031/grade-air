@@ -1,3 +1,5 @@
+// Data persistence so that users can save their progress, by having their information being written to a file.
+
 package persistence;
 
 import model.Student;
@@ -21,7 +23,7 @@ public class JsonWriter {
     // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
     // be opened for writing
     public void open() throws FileNotFoundException {
-        writer = new PrintWriter(new File(destination));
+        writer = new PrintWriter(destination);
     }
 
     // MODIFIES: this

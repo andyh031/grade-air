@@ -1,3 +1,5 @@
+// Creates objects that can be converted to JSON objects.
+
 package persistence;
 
 import org.json.JSONObject;
