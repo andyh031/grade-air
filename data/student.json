@@ -1,36 +1,52 @@
 {
-    "courses": [{
-        "course name": "BIOL 121",
-        "weightings": [
-            {
-                "weight": 50,
-                "marks": [
-                    {
-                        "name": "midterm 1",
-                        "category": "MIDTERM",
-                        "mark": 50
-                    },
-                    {
-                        "name": "midterm 2",
-                        "category": "MIDTERM",
+    "courses": [
+        {
+            "course name": "BIOL 121",
+            "weightings": [
+                {
+                    "weight": 50,
+                    "marks": [
+                        {
+                            "name": "midterm 1",
+                            "category": "MIDTERM",
+                            "mark": 50
+                        },
+                        {
+                            "name": "midterm 2",
+                            "category": "MIDTERM",
+                            "mark": 100
+                        }
+                    ],
+                    "category": "MIDTERM"
+                },
+                {
+                    "weight": 50,
+                    "marks": [{
+                        "name": "final",
+                        "category": "FINAL",
                         "mark": 100
-                    }
-                ],
-                "category": "MIDTERM"
-            },
-            {
-                "weight": 50,
+                    }],
+                    "category": "FINAL"
+                }
+            ],
+            "subject": "BIOLOGY",
+            "course grade": 87.5
+        },
+        {
+            "course name": "CPSC 110",
+            "weightings": [{
+                "weight": 100,
                 "marks": [{
-                    "name": "final",
+                    "name": "final exam",
                     "category": "FINAL",
-                    "mark": 100
+                    "mark": 60
                 }],
                 "category": "FINAL"
-            }
-        ],
-        "subject": "BIOLOGY",
-        "course grade": 87.5
-    }],
+            }],
+            "subject": "COMPUTER SCIENCE",
+            "course grade": 60
+        }
+    ],
     "last name": "Hu",
     "first name": "Andy"
 }

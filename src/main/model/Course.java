@@ -23,6 +23,7 @@ public class Course implements Writable {
         weightingScheme = new ArrayList<>();
     }
 
+    // EFFECTS: creates a new course with a name, subject, teacher, and grade
     public Course(String courseName, String subject, String teacher, double courseGrade) {
         this.courseName = courseName;
         this.subject = subject;
@@ -31,6 +32,7 @@ public class Course implements Writable {
         weightingScheme = new ArrayList<>();
     }
 
+    //EFFECTS: creates a new course with a name, subject, and grade
     public Course(String courseName, String subject, double courseGrade) {
         this.courseName = courseName;
         this.subject = subject;
