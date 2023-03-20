@@ -27,7 +27,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.setSize(new Dimension(450, 600));
         ImageIcon image = new ImageIcon("images/logo.png");
         this.setIconImage(image.getImage());
-        this.setLayout(null);
 
         firstNameLabel();
         firstNameTextField();
@@ -38,6 +37,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         retryLabel();
         noAccountLabel();
         this.setVisible(true);
+    }
+
+    private void loginLabel() {
+        JLabel loginLabel = new JLabel("Login");
+        this.add(loginLabel);
     }
 
     private void lastNameLabel() {

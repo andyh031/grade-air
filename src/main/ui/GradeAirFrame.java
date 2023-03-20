@@ -1,6 +1,5 @@
 package ui;
 
-import model.Course;
 import model.Student;
 
 import javax.swing.*;
