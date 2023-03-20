@@ -4,7 +4,6 @@ package persistence;
 
 import model.Student;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

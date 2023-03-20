@@ -45,6 +45,16 @@
             }],
             "subject": "COMPUTER SCIENCE",
             "course grade": 60
+        },
+        {
+            "course name": "NUTS",
+            "weightings": [{
+                "weight": 100,
+                "marks": [],
+                "category": "100"
+            }],
+            "subject": "NUTS",
+            "course grade": 100
         }
     ],
     "last name": "Hu",
