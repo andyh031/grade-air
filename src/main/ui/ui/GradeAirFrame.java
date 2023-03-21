@@ -1,4 +1,4 @@
-package ui;
+package ui.ui;
 
 import model.Student;
 

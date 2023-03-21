@@ -94,6 +94,10 @@ public class Course implements Writable {
         this.teacher = teacher;
     }
 
+    public void setWeightingScheme(List<Weighting> weightingList) {
+        this.weightingScheme = weightingList;
+    }
+
     // EFFECTS: creates a course JSON object
     @Override
     public JSONObject toJson() {

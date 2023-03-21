@@ -4,59 +4,94 @@
             "course name": "BIOL 121",
             "weightings": [
                 {
-                    "weight": 50,
+                    "weight": 70,
                     "marks": [
                         {
-                            "name": "midterm 1",
-                            "category": "MIDTERM",
+                            "name": "a",
+                            "category": "A",
+                            "mark": 100
+                        },
+                        {
+                            "name": "a2",
+                            "category": "A",
+                            "mark": 50
+                        }
+                    ],
+                    "category": "A"
+                },
+                {
+                    "weight": 30,
+                    "marks": [
+                        {
+                            "name": "b1",
+                            "category": "B",
                             "mark": 50
                         },
                         {
-                            "name": "midterm 2",
-                            "category": "MIDTERM",
-                            "mark": 100
+                            "name": "b2",
+                            "category": "B",
+                            "mark": 75
                         }
                     ],
-                    "category": "MIDTERM"
-                },
-                {
-                    "weight": 50,
-                    "marks": [{
-                        "name": "final",
-                        "category": "FINAL",
-                        "mark": 100
-                    }],
-                    "category": "FINAL"
+                    "category": "B"
                 }
             ],
             "subject": "BIOLOGY",
-            "course grade": 87.5
+            "course grade": 71.25
         },
         {
             "course name": "CPSC 110",
             "weightings": [{
                 "weight": 100,
                 "marks": [{
-                    "name": "final exam",
-                    "category": "FINAL",
-                    "mark": 60
+                    "name": "Fail",
+                    "category": "All",
+                    "mark": 50
                 }],
-                "category": "FINAL"
+                "category": "All"
             }],
-            "subject": "COMPUTER SCIENCE",
-            "course grade": 60
+            "subject": "Computer Science",
+            "course grade": 50
         },
         {
-            "course name": "NUTS",
-            "weightings": [{
-                "weight": 100,
-                "marks": [],
-                "category": "100"
-            }],
-            "subject": "NUTS",
-            "course grade": 100
+            "course name": "Hello",
+            "teacher": "Mr. Gregor",
+            "weightings": [
+                {
+                    "weight": 40,
+                    "marks": [
+                        {
+                            "name": "Final 1",
+                            "category": "Final",
+                            "mark": 60
+                        },
+                        {
+                            "name": "Final 2",
+                            "category": "Final",
+                            "mark": 80
+                        },
+                        {
+                            "name": "idk",
+                            "category": "Final",
+                            "mark": 60
+                        }
+                    ],
+                    "category": "Final"
+                },
+                {
+                    "weight": 60,
+                    "marks": [{
+                        "name": "Homework 1",
+                        "category": "Homework",
+                        "mark": 100
+                    }],
+                    "category": "Homework"
+                }
+            ],
+            "subject": "Hello",
+            "course grade": 86.66666666666667
         }
     ],
     "last name": "Hu",
-    "first name": "Andy"
+    "first name": "Andyyyyy"
 }

@@ -1,8 +1,7 @@
-package ui;
+package ui.ui;
 
 import model.Student;
 import persistence.JsonReader;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,13 +10,14 @@ import java.io.IOException;
 
 public class LoginFrame extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/student.json";
+
+    private JLabel noAccountLabel;
+    private JLabel retry;
     private JTextField userFirstName;
     private JTextField userLastName;
     private JButton submitButton;
     private JButton loadButton;
-    private JLabel noAccountLabel;
     private Student student;
-    private JLabel retry;
     private JsonReader jsonReader;
 
     public LoginFrame() {
@@ -37,11 +37,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         retryLabel();
         noAccountLabel();
         this.setVisible(true);
-    }
-
-    private void loginLabel() {
-        JLabel loginLabel = new JLabel("Login");
-        this.add(loginLabel);
     }
 
     private void lastNameLabel() {
