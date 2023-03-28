@@ -12,8 +12,7 @@ import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 
 public class HomePanel extends JPanel implements ActionListener {
-    public static final Color BACKGROUND_COLOR = new Color(0xF6F3E7);
-    public static final Color CLASS_PANEL_COLOR = new Color(0xF0E2CE);
+    public static final Color CLASS_PANEL_COLOR = new Color(0xE5E5E5);
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private static final String JSON_STORE = "./data/student.json";
     private Student student;
@@ -32,7 +31,6 @@ public class HomePanel extends JPanel implements ActionListener {
         this.setBackground(Color.white);
         this.student = student;
         this.setLayout(new GridBagLayout());
-        this.setBackground(BACKGROUND_COLOR);
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
 
@@ -43,7 +41,6 @@ public class HomePanel extends JPanel implements ActionListener {
         makeRemoveButton();
 
         this.add(dashboard, c);
-        c.anchor = GridBagConstraints.FIRST_LINE_START;
         this.add(gpa, c);
         displayClasses(c);
         c.gridx = 0;
@@ -67,19 +64,16 @@ public class HomePanel extends JPanel implements ActionListener {
     private void makeRemoveButton() {
         removeButton = new JToggleButton("Remove Class");
         removeButton.addActionListener(this);
-        removeButton.setFont(new Font(removeButton.getName(), Font.PLAIN, 20));
     }
 
     private void makeSaveButton() {
         saveButton = new JButton("Save");
         saveButton.addActionListener(this);
-        saveButton.setFont(new Font(saveButton.getName(), Font.PLAIN, 20));
     }
 
     private void makeAddClassButton() {
         addClass = new JButton("Add");
         addClass.addActionListener(this);
-        addClass.setFont(new Font(addClass.getName(), Font.PLAIN, 20));
     }
 
     public void displayClasses(GridBagConstraints c) {
@@ -126,7 +120,7 @@ public class HomePanel extends JPanel implements ActionListener {
         public void mouseEntered(MouseEvent e) {
             if (e.getSource() instanceof ClassPanel) {
                 ClassPanel panel = (ClassPanel)e.getSource();
-                panel.setBackground(new Color(0xDBC2AD));
+                panel.setBackground(new Color(0xCDCDCD));
             }
         }
 

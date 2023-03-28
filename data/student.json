@@ -40,42 +40,34 @@
             "course grade": 71.25
         },
         {
-            "course name": "Hello",
-            "teacher": "Mr. Gregor",
+            "course name": "PHYS 106",
             "weightings": [
                 {
-                    "weight": 40,
-                    "marks": [
-                        {
-                            "name": "Final 1",
-                            "category": "Final",
-                            "mark": 60
-                        },
-                        {
-                            "name": "Final 2",
-                            "category": "Final",
-                            "mark": 80
-                        },
-                        {
-                            "name": "idk",
-                            "category": "Final",
-                            "mark": 60
-                        }
-                    ],
-                    "category": "Final"
+                    "weight": 30,
+                    "marks": [],
+                    "category": "Homework"
                 },
                 {
-                    "weight": 60,
+                    "weight": 30,
                     "marks": [{
-                        "name": "Homework 1",
-                        "category": "Homework",
-                        "mark": 100
+                        "name": "mt12",
+                        "category": "Midterm",
+                        "mark": 80
                     }],
-                    "category": "Homework"
+                    "category": "Midterm"
+                },
+                {
+                    "weight": 40,
+                    "marks": [{
+                        "name": "Final Exam",
+                        "category": "Final",
+                        "mark": 98
+                    }],
+                    "category": "Final"
                 }
             ],
-            "subject": "Hello",
-            "course grade": 86.66666666666667
+            "subject": "Physics",
+            "course grade": 90.28571428571429
         }
     ],
     "last name": "Hu",

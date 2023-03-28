@@ -17,8 +17,6 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import static ui.ui.HomePanel.BACKGROUND_COLOR;
-
 public class ClassInfoFrame extends JFrame implements ActionListener {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private static final int WINDOW_HEIGHT = 600;
@@ -40,7 +38,6 @@ public class ClassInfoFrame extends JFrame implements ActionListener {
     //          is also given the option to add marks to the class and edit class information
     public ClassInfoFrame(Student student, Course course) {
         super(course.getCourseName());
-        this.getContentPane().setBackground(BACKGROUND_COLOR);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.course = course;
         this.student = student;

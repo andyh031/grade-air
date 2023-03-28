@@ -19,6 +19,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     private JButton loadButton;
     private Student student;
     private JsonReader jsonReader;
+    private GridBagConstraints gbc;
 
     public LoginFrame() {
         super("GradeAir");
@@ -27,11 +28,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         this.setSize(new Dimension(450, 600));
         ImageIcon image = new ImageIcon("images/logo.png");
         this.setIconImage(image.getImage());
+        this.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
 
         firstNameLabel();
-        firstNameTextField();
         lastNameLabel();
-        userLastNameTextField();
         submitButton();
         loadButton();
         retryLabel();
@@ -41,53 +42,49 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     private void lastNameLabel() {
         JLabel lnameLabel = new JLabel("Last Name");
-        lnameLabel.setBounds(10, 40, 80, 20);
-        this.add(lnameLabel);
+        userFirstName = new JTextField(15);
+        gbc.gridx = 0;
+        this.add(lnameLabel, gbc);
+        gbc.gridx = 1;
+        this.add(userFirstName, gbc);
     }
 
-    private void firstNameTextField() {
-        userFirstName = new JTextField(10);
-        userFirstName.setBounds(100, 20, 165, 20);
-        this.add(userFirstName);
-    }
 
     private void firstNameLabel() {
         JLabel fnameLabel = new JLabel("First Name");
-        fnameLabel.setBounds(10, 20, 80, 20);
-        this.add(fnameLabel);
-    }
-
-    private void userLastNameTextField() {
-        userLastName = new JTextField(10);
-        userLastName.setBounds(100, 40, 165, 20);
-        this.add(userLastName);
+        userLastName = new JTextField(15);
+        gbc.gridx = 0;
+        this.add(fnameLabel, gbc);
+        gbc.gridx = 1;
+        this.add(userLastName, gbc);
     }
 
     public void submitButton() {
         submitButton = new JButton("Submit");
-        submitButton.setBounds(40, 80, 80, 20);
         submitButton.addActionListener(this);
-        this.add(submitButton);
+        gbc.gridx = 0;
+        this.add(submitButton, gbc);
     }
 
     public void loadButton() {
         loadButton = new JButton("Load");
-        loadButton.setBounds(150, 80, 80, 20);
         loadButton.addActionListener(this);
-        this.add(loadButton);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        this.add(loadButton, gbc);
     }
 
     public void retryLabel() {
         retry = new JLabel("Please retry");
-        retry.setBounds(100, 100, 165, 20);
-        this.add(retry);
+        gbc.gridx = 0;
+        this.add(retry, gbc);
         retry.setVisible(false);
     }
 
     public void noAccountLabel() {
         noAccountLabel = new JLabel("You don't have an account");
-        noAccountLabel.setBounds(150, 80, 80, 20);
-        this.add(noAccountLabel);
+        gbc.gridx = 0;
+        this.add(noAccountLabel, gbc);
         noAccountLabel.setVisible(false);
     }
 
