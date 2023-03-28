@@ -40,20 +40,6 @@
             "course grade": 71.25
         },
         {
-            "course name": "CPSC 110",
-            "weightings": [{
-                "weight": 100,
-                "marks": [{
-                    "name": "Fail",
-                    "category": "All",
-                    "mark": 50
-                }],
-                "category": "All"
-            }],
-            "subject": "Computer Science",
-            "course grade": 50
-        },
-        {
             "course name": "Hello",
             "teacher": "Mr. Gregor",
             "weightings": [
@@ -93,5 +79,5 @@
         }
     ],
     "last name": "Hu",
-    "first name": "Andyyyyy"
+    "first name": "Andy"
 }

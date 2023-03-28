@@ -1,14 +1,15 @@
+// A popup window to change account information (first and last name)
+
 package ui.ui.forms;
 
 import model.Student;
-import ui.ui.GradeAirFrame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AccountForm extends JFrame implements ActionListener {
+public class AccountForm extends JFrame implements ActionListener, Form {
     private static final int LABEL_WIDTH = 100;
     private static final int TEXT_WIDTH = 300;
     private static final int ONE_LINE_HEIGHT = 20;
@@ -21,6 +22,7 @@ public class AccountForm extends JFrame implements ActionListener {
     private JLabel lnameLabel;
     private JButton submitButton;
 
+    // EFFECTS: creates a window for first and last name fields
     public AccountForm(Student student) {
         super("Account Information");
         this.student = student;
@@ -40,12 +42,15 @@ public class AccountForm extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    private void makeSubmitButton() {
+    //EFFECTS: creates a button to click when user is done changing information
+    @Override
+    public void makeSubmitButton() {
         submitButton = new JButton("Submit");
         submitButton.setPreferredSize(new Dimension(100, 30));
         submitButton.addActionListener(this);
     }
 
+    //EFFECTS: creates a field for the user to change their last name
     private void makeLNameField(Student student) {
         lnameLabel = new JLabel("Last Name ");
         lnameLabel.setPreferredSize(LABEL_DIMENSION);
@@ -53,6 +58,7 @@ public class AccountForm extends JFrame implements ActionListener {
         lnameText.setPreferredSize(TEXT_DIMENSION);
     }
 
+    //EFFECTS: creates a field for the user to change their first name
     private void makeFNameField(Student student) {
         fnameLabel = new JLabel("First Name");
         fnameLabel.setPreferredSize(LABEL_DIMENSION);

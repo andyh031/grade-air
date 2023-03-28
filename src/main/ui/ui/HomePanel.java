@@ -7,36 +7,40 @@ import ui.ui.forms.WeightingForm;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 
 public class HomePanel extends JPanel implements ActionListener {
+    public static final Color BACKGROUND_COLOR = new Color(0xF6F3E7);
+    public static final Color CLASS_PANEL_COLOR = new Color(0xF0E2CE);
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private static final String JSON_STORE = "./data/student.json";
     private Student student;
     private JButton saveButton;
     private JButton addClass;
+    private JToggleButton removeButton;
     private JLabel dashboard;
     private JLabel gpa;
     private JsonWriter jsonWriter;
+    private GradeAirFrame gaf;
 
-    public HomePanel(Student student) {
+    public HomePanel(Student student, GradeAirFrame gaf) {
+        this.gaf = gaf;
         jsonWriter = new JsonWriter(JSON_STORE);
         this.setSize(new Dimension(400, 600));
         this.setBackground(Color.white);
         this.student = student;
         this.setLayout(new GridBagLayout());
+        this.setBackground(BACKGROUND_COLOR);
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
 
         makeDashboardLabel();
         makeGpaLabel(student);
-        makeClassButton();
+        makeAddClassButton();
         makeSaveButton();
+        makeRemoveButton();
 
         this.add(dashboard, c);
         c.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -45,6 +49,7 @@ public class HomePanel extends JPanel implements ActionListener {
         c.gridx = 0;
         this.add(addClass, c);
         this.add(saveButton, c);
+        this.add(removeButton, c);
         this.setVisible(true);
     }
 
@@ -59,13 +64,19 @@ public class HomePanel extends JPanel implements ActionListener {
         dashboard.setHorizontalAlignment(JLabel.LEFT);
     }
 
+    private void makeRemoveButton() {
+        removeButton = new JToggleButton("Remove Class");
+        removeButton.addActionListener(this);
+        removeButton.setFont(new Font(removeButton.getName(), Font.PLAIN, 20));
+    }
+
     private void makeSaveButton() {
         saveButton = new JButton("Save");
         saveButton.addActionListener(this);
         saveButton.setFont(new Font(saveButton.getName(), Font.PLAIN, 20));
     }
 
-    private void makeClassButton() {
+    private void makeAddClassButton() {
         addClass = new JButton("Add");
         addClass.addActionListener(this);
         addClass.setFont(new Font(addClass.getName(), Font.PLAIN, 20));
@@ -81,19 +92,57 @@ public class HomePanel extends JPanel implements ActionListener {
                 c.gridx = 1;
             }
             this.add(classPanel, c);
-            classPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    new ClassInfoFrame(course);
-                }
-            });
+            classPanel.addMouseListener(new ClickClassListener());
         }
     }
+
+    public class ClickClassListener implements MouseListener {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (e.getSource() instanceof ClassPanel) {
+                ClassPanel panel = (ClassPanel) e.getSource();
+                if (!removeButton.isSelected()) {
+                    new ClassInfoFrame(student, panel.getCourse());
+                    gaf.dispose();
+                } else {
+                    student.getCourses().remove(panel.getCourse());
+                    gaf.dispose();
+                    new GradeAirFrame(student);
+                }
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            if (e.getSource() instanceof ClassPanel) {
+                ClassPanel panel = (ClassPanel)e.getSource();
+                panel.setBackground(new Color(0xDBC2AD));
+            }
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            if (e.getSource() instanceof ClassPanel) {
+                ClassPanel panel = (ClassPanel)e.getSource();
+                panel.setBackground(CLASS_PANEL_COLOR);
+            }
+        }
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addClass) {
-            // TODO
             new WeightingForm(student);
         } else if (e.getSource() == saveButton) {
             try {
@@ -104,6 +153,5 @@ public class HomePanel extends JPanel implements ActionListener {
 
             }
         }
-
     }
 }

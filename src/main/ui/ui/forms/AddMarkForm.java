@@ -1,7 +1,10 @@
+// A popup window for the user to add a mark to a class
+
 package ui.ui.forms;
 
 import model.Course;
 import model.MarkEntry;
+import model.Student;
 import model.Weighting;
 import ui.ui.ClassInfoFrame;
 
@@ -12,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddMarkForm extends JFrame implements ActionListener {
+public class AddMarkForm extends JFrame implements ActionListener, Form {
     private static final int LABEL_WIDTH = 100;
     private static final int TEXT_WIDTH = 300;
     private static final int ONE_LINE_HEIGHT = 20;
@@ -28,9 +31,12 @@ public class AddMarkForm extends JFrame implements ActionListener {
     private Course course;
     private List<String> weightingNameList = new ArrayList<>();
     private String[] weightings;
+    private Student student;
 
-    public AddMarkForm(Course course) {
+    // EFFECTS: Creates a form for user to input a mark name, grade, and category of its weighting
+    public AddMarkForm(Student student, Course course) {
         super("Add Mark");
+        this.student = student;
         this.course = course;
         weightingsArray(course);
         this.setSize(450, 600);
@@ -44,13 +50,16 @@ public class AddMarkForm extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    private void makeSubmitButton() {
+    // EFFECTS: creates a button to click when user is done entering mark
+    @Override
+    public void makeSubmitButton() {
         submitButton = new JButton("Submit");
         submitButton.setPreferredSize(new Dimension(100, 30));
         submitButton.addActionListener(this);
         this.add(submitButton);
     }
 
+    //EFFECTS: makes a field for the user to select the category(in a weighting) of the mark
     private void makeMarkCategoryField() {
         markCategoryLabel = new JLabel("Category");
         markCategoryLabel.setPreferredSize(LABEL_DIMENSION);
@@ -60,6 +69,7 @@ public class AddMarkForm extends JFrame implements ActionListener {
         this.add(markCategoryText);
     }
 
+    //EFFECTS: creates a field for the user to enter their grade achieved for the rsepective mark
     private void makeMarkGradeField() {
         markGradeLabel = new JLabel("Grade");
         markGradeLabel.setPreferredSize(LABEL_DIMENSION);
@@ -69,6 +79,7 @@ public class AddMarkForm extends JFrame implements ActionListener {
         this.add(markGradeText);
     }
 
+    //EFFECTS: creates a field for the user to enter the name of the mark
     private void makeMarkNameField() {
         markNameLabel = new JLabel("Mark Name");
         markNameLabel.setPreferredSize(LABEL_DIMENSION);
@@ -78,6 +89,7 @@ public class AddMarkForm extends JFrame implements ActionListener {
         this.add(markNameText);
     }
 
+    //EFFECTS: adds weighting names to an array for use of the JComboBox selector
     private void weightingsArray(Course course) {
         for (Weighting weighting : course.getWeightingScheme()) {
             weightingNameList.add(weighting.getCategory());
@@ -85,6 +97,8 @@ public class AddMarkForm extends JFrame implements ActionListener {
         weightings = weightingNameList.toArray(new String[0]);
     }
 
+    //MODIFIES: student, course
+    //EFFECTS: when user clicks submit button, add the mark information to the course
     @Override
     public void actionPerformed(ActionEvent e) {
         String name = markNameText.getText();
@@ -94,6 +108,6 @@ public class AddMarkForm extends JFrame implements ActionListener {
 
         course.addMarkEntry(mark);
         this.dispose();
-        new ClassInfoFrame(course);
+        new ClassInfoFrame(student, course);
     }
 }
