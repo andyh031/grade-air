@@ -1,32 +1,29 @@
-package ui.ui;
+// Represents a frame showing the user their first name and last name, with a button to edit these fields
+
+package ui.ui.forms;
 
 import model.Student;
-import ui.ui.forms.AccountForm;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class InformationFrame extends JFrame implements ActionListener {
+public class InformationFrame extends Form {
     private Student student;
 
+    // EFFECTS: creates a frame showing user information with a button to prompt user to change these fields
     public InformationFrame(Student student) {
         super("Account Information");
         this.student = student;
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(new Dimension(450, 600));
-        ImageIcon image = new ImageIcon("images/logo.png");
-        this.setIconImage(image.getImage());
-        this.setLayout(null);
+
+        makeHeading("Account Information");
 
         JLabel fname = new JLabel("First Name: " + student.getFirstName());
-        fname.setBounds(5, 0, 250, 20);
+        fname.setPreferredSize(FULL_WIDTH_DIMENSION);
+
         JLabel lname = new JLabel("Last Name: " + student.getLastName());
-        lname.setBounds(5, 20, 250, 20);
+        lname.setPreferredSize(FULL_WIDTH_DIMENSION);
 
         JButton submitButton = new JButton("Edit");
-        submitButton.setBounds(5, 40, 100, 20);
         submitButton.addActionListener(this);
 
         this.add(fname);
@@ -35,6 +32,7 @@ public class InformationFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    // EFFECTS: opens up a form for user to change their first or last name
     @Override
     public void actionPerformed(ActionEvent e) {
         this.dispose();

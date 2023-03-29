@@ -28,17 +28,20 @@ public class ClassInfoFrame extends JFrame implements ActionListener {
     private JButton addMark;
     private JButton edit;
     private JButton backButton;
-    private JPanel title;
+    private JLabel title;
     private JPanel info;
     private JPanel buttons;
     private JPanel grades;
     private Border border;
+    private Border bottomBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.black);
 
     //EFFECTS: creates a frame for the class, showing its name, information fields, and grades. User
     //          is also given the option to add marks to the class and edit class information
     public ClassInfoFrame(Student student, Course course) {
         super(course.getCourseName());
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ImageIcon image = new ImageIcon("images/logo.png");
+        this.setIconImage(image.getImage());
         this.course = course;
         this.student = student;
         border = BorderFactory.createLineBorder(Color.black, 2);
@@ -51,21 +54,26 @@ public class ClassInfoFrame extends JFrame implements ActionListener {
         makeGrades(course);
         makeBackButton();
 
-        this.add(title);
-        this.add(info);
-        this.add(buttons);
-        this.add(grades);
-        this.add(backButton);
-
         this.setVisible(true);
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates the back button to go 'back'
+    public void makeBackButton() {
+        backButton = new JButton("Back");
+        backButton.setVerticalAlignment(JButton.BOTTOM);
+        backButton.addActionListener(this);
+        this.add(backButton);
+    }
+
+    //MODIFIES: this
     //EFFECTS: creates a panel to display all the course marks
     private void makeGrades(Course course) {
         grades = new JPanel();
-        grades.setPreferredSize(new Dimension(WINDOW_WIDTH, 300));
+        grades.setPreferredSize(new Dimension(WINDOW_WIDTH, 350));
         grades.setLayout(new FlowLayout());
         List<Weighting> weightingScheme = course.getWeightingScheme();
+
         for (int i = 0; i < weightingScheme.size(); i++) {
             JLabel weightName = new JLabel(weightingScheme.get(i).getCategory());
             weightName.setPreferredSize(ONE_LINE_DIMENSION);
@@ -77,9 +85,13 @@ public class ClassInfoFrame extends JFrame implements ActionListener {
 
                 grades.add(mark);
             }
+            weightName.setBorder(bottomBorder);
+
         }
+        this.add(grades);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates an add and edit button for user to add a mark, or edit class information
     private void makeButtons() {
         buttons = new JPanel();
@@ -92,44 +104,47 @@ public class ClassInfoFrame extends JFrame implements ActionListener {
         buttons.setBorder(border);
         addMark.addActionListener(this);
         edit.addActionListener(this);
+        this.add(buttons);
     }
 
-    private void makeBackButton() {
-        backButton = new JButton("Back");
-        backButton.addActionListener(this);
-    }
-
+    //MODIFIES: this
     //EFFECTS: displays gpa, subject, and teacher of the class
     private void makeInformation(Course course) {
         info = new JPanel();
         info.setPreferredSize(new Dimension(WINDOW_WIDTH, 75));
-        JLabel gpa = new JLabel("GPA: " + df.format(course.getCourseGrade()));
+        JLabel gpa = new JLabel("GPA: " + df.format(course.getCourseGrade()) + "%");
         gpa.setPreferredSize(ONE_LINE_DIMENSION);
-        gpa.setHorizontalAlignment(JLabel.CENTER);
-        JLabel subject = new JLabel("SUBJECT: " + course.getSubject());
+        JLabel subject = new JLabel("Subject: " + course.getSubject());
         subject.setPreferredSize(ONE_LINE_DIMENSION);
-        subject.setHorizontalAlignment(JLabel.CENTER);
-        JLabel teacher = new JLabel("TEACHER: " + course.getTeacher());
+
+        JLabel teacher = new JLabel("Teacher: " + course.getTeacher());
         teacher.setPreferredSize(ONE_LINE_DIMENSION);
-        teacher.setHorizontalAlignment(JLabel.CENTER);
+        if (course.getTeacher() == null || course.getTeacher().length() == 0) {
+            teacher.setVisible(false);
+        } else {
+            teacher.setVisible(true);
+        }
+
         info.add(gpa);
         info.add(subject);
         info.add(teacher);
-        info.setBorder(border);
+        info.setBorder(bottomBorder);
+        this.add(info);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates the heading, showing the name of the class at the top of the frame
     private void makeTitle(Course course) {
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        title = new JPanel();
+        title = new JLabel(course.getCourseName());
         title.setPreferredSize(new Dimension(WINDOW_WIDTH, 50));
-        JLabel className = new JLabel(course.getCourseName());
-        title.add(className);
-        className.setFont(new Font(className.getName(), Font.PLAIN, 30));
-        title.setBorder(border);
+        title.setFont(new Font(title.getName(), Font.PLAIN, 30));
+        title.setBorder(bottomBorder);
+        this.add(title);
     }
 
-    //EFFECTS: closes the window and either bring up the 'add mark form' or the 'edit info form'
+    //EFFECTS: if user hits edit, bring up the edit class form for user to edit class informatoin
+    //         if user hits add mark, bring up the add mark form so user can add a mark
+    //         if user hits back button, go back to the home page
     @Override
     public void actionPerformed(ActionEvent e) {
         this.dispose();
@@ -142,6 +157,7 @@ public class ClassInfoFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == backButton) {
             new GradeAirFrame(student);
         }
-
     }
+
+
 }

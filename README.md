@@ -35,3 +35,13 @@ to yield a final grade.
 
 > ## Citations
 - Used the JsonSerializationDemo project provided by UBC.
+
+> ## Instructions for Grader
+- You can generate the first required action related to adding Xs to a Y by pressing the "Add" button on the homescreen,
+where you will be prompted to input information about the class.
+- You can generate the second required action related to adding Xs to a Y by pressing the "Remove Class" button on
+the home screen, while is a toggle that will allow you to click a class and remove it.
+- You can locate my visual component on the home screen where I have hand drawn the logo and profile,
+and you can also hover over classes and see them change colour.
+- You can save the state of my application by pressing save on the home screen.
+- You can load the state of my application when prompted to 'register' for the application.

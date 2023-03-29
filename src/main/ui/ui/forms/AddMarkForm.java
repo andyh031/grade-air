@@ -9,56 +9,41 @@ import model.Weighting;
 import ui.ui.ClassInfoFrame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddMarkForm extends JFrame implements ActionListener, Form {
-    private static final int LABEL_WIDTH = 100;
-    private static final int TEXT_WIDTH = 300;
-    private static final int ONE_LINE_HEIGHT = 20;
-    private static final Dimension TEXT_DIMENSION = new Dimension(TEXT_WIDTH, ONE_LINE_HEIGHT);
-    private static final Dimension LABEL_DIMENSION = new Dimension(LABEL_WIDTH, ONE_LINE_HEIGHT);
+public class AddMarkForm extends Form {
     private JTextField markNameText;
     private JTextField markGradeText;
     private JLabel markNameLabel;
     private JLabel markGradeLabel;
     private JLabel markCategoryLabel;
-    private JButton submitButton;
     private JComboBox markCategoryText;
     private Course course;
     private List<String> weightingNameList = new ArrayList<>();
     private String[] weightings;
-    private Student student;
 
     // EFFECTS: Creates a form for user to input a mark name, grade, and category of its weighting
     public AddMarkForm(Student student, Course course) {
         super("Add Mark");
         this.student = student;
         this.course = course;
+        this.addWindowListener(new CloseWindow());
         weightingsArray(course);
-        this.setSize(450, 600);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new FlowLayout());
 
+        makeHeading("Add a Mark");
         makeMarkNameField();
         makeMarkGradeField();
         makeMarkCategoryField();
         makeSubmitButton();
+        this.add(submitButton);
         this.setVisible(true);
     }
 
-    // EFFECTS: creates a button to click when user is done entering mark
-    @Override
-    public void makeSubmitButton() {
-        submitButton = new JButton("Submit");
-        submitButton.setPreferredSize(new Dimension(100, 30));
-        submitButton.addActionListener(this);
-        this.add(submitButton);
-    }
-
+    //MODIFIES: this
     //EFFECTS: makes a field for the user to select the category(in a weighting) of the mark
     private void makeMarkCategoryField() {
         markCategoryLabel = new JLabel("Category");
@@ -69,6 +54,7 @@ public class AddMarkForm extends JFrame implements ActionListener, Form {
         this.add(markCategoryText);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a field for the user to enter their grade achieved for the rsepective mark
     private void makeMarkGradeField() {
         markGradeLabel = new JLabel("Grade");
@@ -79,6 +65,7 @@ public class AddMarkForm extends JFrame implements ActionListener, Form {
         this.add(markGradeText);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a field for the user to enter the name of the mark
     private void makeMarkNameField() {
         markNameLabel = new JLabel("Mark Name");
@@ -89,6 +76,7 @@ public class AddMarkForm extends JFrame implements ActionListener, Form {
         this.add(markNameText);
     }
 
+    //MODIFIES: this
     //EFFECTS: adds weighting names to an array for use of the JComboBox selector
     private void weightingsArray(Course course) {
         for (Weighting weighting : course.getWeightingScheme()) {
@@ -108,6 +96,45 @@ public class AddMarkForm extends JFrame implements ActionListener, Form {
 
         course.addMarkEntry(mark);
         this.dispose();
-        new ClassInfoFrame(student, course);
+    }
+
+    // Operation upon closing window
+    public class CloseWindow implements WindowListener {
+
+        @Override
+        public void windowOpened(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowClosed(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowIconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowActivated(WindowEvent e) {
+
+        }
+
+        // EFFECTS: creates a class information frame upon closing the add mark form
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+            new ClassInfoFrame(student, course);
+        }
     }
 }

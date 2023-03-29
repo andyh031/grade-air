@@ -11,22 +11,14 @@ import ui.ui.GradeAirFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeightingForm extends JFrame implements ActionListener, Form {
-    private static final int LABEL_WIDTH = 100;
-    private static final int TEXT_WIDTH = 300;
-    private static final int ONE_LINE_HEIGHT = 20;
-    private static final Dimension TEXT_DIMENSION = new Dimension(TEXT_WIDTH, ONE_LINE_HEIGHT);
-    private static final Dimension LABEL_DIMENSION = new Dimension(LABEL_WIDTH, ONE_LINE_HEIGHT);
+public class WeightingForm extends Form {
     private List<Weighting> weightingList = new ArrayList<>();
     private JTextField weightIntText;
     private JTextField weightText;
     private JButton addButton;
-    private JButton submitButton;
-    private Student student;
     private JLabel name;
     private JTextField nameText;
     private JLabel subject;
@@ -38,44 +30,37 @@ public class WeightingForm extends JFrame implements ActionListener, Form {
     public WeightingForm(Student student) {
         super("Add Class");
         this.student = student;
-        this.setSize(450, 600);
-        this.setLayout(new FlowLayout());
 
+
+        makeHeading("Add Class");
         makeNameField();
         makeSubjectField();
         makeWeightingsLabel();
+        weightSection();
         makeAddButton();
         makeSubmitButton();
-        makeTotalLabel();
-        weightSection();
 
-        this.add(addButton);
-        this.add(submitButton);
-        this.add(totalLabel);
+        makeTotalLabel();
         this.setVisible(true);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a label which updates to show how much percentage of weighting has been allocated so far
     private void makeTotalLabel() {
         totalLabel = new JLabel();
         totalLabel.setText("Total Weight: " + total);
         totalLabel.setHorizontalAlignment(JLabel.CENTER);
         totalLabel.setPreferredSize(new Dimension(300, 20));
+        this.add(totalLabel);
     }
 
-    //EFFECTS: creates a button for user to click when done entering class information
-    @Override
-    public void makeSubmitButton() {
-        submitButton = new JButton("Submit");
-        submitButton.setPreferredSize(new Dimension(80, 20));
-        submitButton.addActionListener(this);
-    }
-
+    //MODIFIES: this
     //EFFECTS: creates a button for the user to click to add a weighting to the class
     private void makeAddButton() {
         addButton = new JButton("Add");
         addButton.setPreferredSize(new Dimension(80, 20));
         addButton.addActionListener(this);
+        this.add(addButton);
     }
 
     //EFFECTS: creates a label for "weightings"
@@ -85,6 +70,7 @@ public class WeightingForm extends JFrame implements ActionListener, Form {
         this.add(weightLabel);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a field for user to type in the subject of the class
     private void makeSubjectField() {
         subject = new JLabel("Subject: ");
@@ -95,6 +81,7 @@ public class WeightingForm extends JFrame implements ActionListener, Form {
         this.add(subjectText);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a field for the user to type in the name of the class
     private void makeNameField() {
         name = new JLabel("Class Name: ");
@@ -105,6 +92,7 @@ public class WeightingForm extends JFrame implements ActionListener, Form {
         this.add(nameText);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a section for users to initialize the weighting scheme of the class
     public void weightSection() {
         JLabel nameLabel = new JLabel("Name of Weight");

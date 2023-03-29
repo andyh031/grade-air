@@ -3,7 +3,7 @@
 package ui.ui;
 
 import model.Student;
-import ui.ui.forms.AccountForm;
+import ui.ui.forms.InformationFrame;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,7 +16,7 @@ public class MenuPanel extends JPanel {
     private JLabel logo;
     private JLabel profile;
     private Student student;
-    private static final Border border = BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK);
+    private static final Border border = BorderFactory.createMatteBorder(0, 0, 0, 3, Color.BLACK);
 
     // EFFECTS: Creates a menu panel with the application logo and account information
     public MenuPanel(Student student) {
@@ -32,6 +32,8 @@ public class MenuPanel extends JPanel {
         this.add(profile);
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates the logo image
     private void makeLogo() {
         ImageIcon logoImage = new ImageIcon(new ImageIcon("images/logo.png")
                 .getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_DEFAULT));
@@ -39,6 +41,8 @@ public class MenuPanel extends JPanel {
         logo.setIcon(logoImage);
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates the profile image
     private void makeProfile() {
         ImageIcon profileImage = new ImageIcon(new ImageIcon("images/profile.png")
                 .getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_DEFAULT));
@@ -48,11 +52,11 @@ public class MenuPanel extends JPanel {
     }
 
     public class ClickProfileListener implements MouseListener {
-
+        //EFFECTS: if user hits profile, open up user account information
         @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getSource() == profile) {
-                new AccountForm(student);
+                new InformationFrame(student);
             }
         }
 
@@ -66,6 +70,7 @@ public class MenuPanel extends JPanel {
 
         }
 
+        //EFFECTS: change hover behaviour when mouse is over the profile image
         @Override
         public void mouseEntered(MouseEvent e) {
             if (e.getSource() == profile) {
@@ -74,6 +79,7 @@ public class MenuPanel extends JPanel {
             }
         }
 
+        //EFFECTS: change hover behaviour when mouse is not over the profile image
         @Override
         public void mouseExited(MouseEvent e) {
             if (e.getSource() == profile) {

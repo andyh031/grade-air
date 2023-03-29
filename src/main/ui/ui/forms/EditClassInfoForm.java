@@ -8,35 +8,27 @@ import model.Student;
 import ui.ui.ClassInfoFrame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class EditClassInfoForm extends JFrame implements ActionListener, Form {
-    private static final int LABEL_WIDTH = 100;
-    private static final int TEXT_WIDTH = 300;
-    private static final int ONE_LINE_HEIGHT = 20;
-    private static final Dimension TEXT_DIMENSION = new Dimension(TEXT_WIDTH, ONE_LINE_HEIGHT);
-    private static final Dimension LABEL_DIMENSION = new Dimension(LABEL_WIDTH, ONE_LINE_HEIGHT);
+public class EditClassInfoForm extends Form {
     private JLabel courseNameLabel;
     private JTextField courseNameText;
     private JLabel subjectLabel;
     private JTextField subjectText;
     private JLabel teacherLabel;
     private JTextField teacherText;
-    private JButton submitButton;
     private Course course;
-    private Student student;
 
     // EFFECTS: Creates a form for user to edit class information
     public EditClassInfoForm(Student student, Course course) {
         super("Class Information");
         this.student = student;
         this.course = course;
-        this.setSize(450, 600);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new FlowLayout());
+        this.addWindowListener(new CloseWindow());
 
+        makeHeading("Course Information");
         makeCourseNameField(course);
         makeSubjectField(course);
         makeTeacherField(course);
@@ -45,15 +37,7 @@ public class EditClassInfoForm extends JFrame implements ActionListener, Form {
         this.setVisible(true);
     }
 
-    // EFFECTS: creates a button to click when user is done entering mark
-    @Override
-    public void makeSubmitButton() {
-        submitButton = new JButton("Submit");
-        submitButton.setPreferredSize(new Dimension(100, 30));
-        submitButton.addActionListener(this);
-        this.add(submitButton);
-    }
-
+    //MODIFIES: this
     //EFFECTS: creates a field for the user to change the teacher name
     private void makeTeacherField(Course course) {
         teacherLabel = new JLabel("Teacher");
@@ -64,6 +48,7 @@ public class EditClassInfoForm extends JFrame implements ActionListener, Form {
         this.add(teacherText);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a field for the user to change the subject of the class
     private void makeSubjectField(Course course) {
         subjectLabel = new JLabel("Subject");
@@ -74,6 +59,7 @@ public class EditClassInfoForm extends JFrame implements ActionListener, Form {
         this.add(subjectText);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a field for the user to change the name of the course
     private void makeCourseNameField(Course course) {
         courseNameLabel = new JLabel("Course Name");
@@ -92,6 +78,45 @@ public class EditClassInfoForm extends JFrame implements ActionListener, Form {
         course.setSubject(subjectText.getText());
         course.setTeacher(teacherText.getText());
         this.dispose();
-        new ClassInfoFrame(student, course);
+    }
+
+    //Window closing operations
+    public class CloseWindow implements WindowListener {
+
+        @Override
+        public void windowOpened(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+
+        }
+
+        //EFFECTS: generates a class information frame upon closing the edit class form
+        @Override
+        public void windowClosed(WindowEvent e) {
+            new ClassInfoFrame(student, course);
+        }
+
+        @Override
+        public void windowIconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowActivated(WindowEvent e) {
+
+        }
+
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+
+        }
     }
 }

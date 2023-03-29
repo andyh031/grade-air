@@ -2,74 +2,58 @@
     "courses": [
         {
             "course name": "BIOL 121",
+            "teacher": "Lynn Norman",
             "weightings": [
-                {
-                    "weight": 70,
-                    "marks": [
-                        {
-                            "name": "a",
-                            "category": "A",
-                            "mark": 100
-                        },
-                        {
-                            "name": "a2",
-                            "category": "A",
-                            "mark": 50
-                        }
-                    ],
-                    "category": "A"
-                },
                 {
                     "weight": 30,
                     "marks": [
                         {
-                            "name": "b1",
-                            "category": "B",
-                            "mark": 50
+                            "name": "Homework 1",
+                            "category": "Homework",
+                            "mark": 56
                         },
                         {
-                            "name": "b2",
-                            "category": "B",
-                            "mark": 75
+                            "name": "Homework 2",
+                            "category": "Homework",
+                            "mark": 87
                         }
                     ],
-                    "category": "B"
-                }
-            ],
-            "subject": "BIOLOGY",
-            "course grade": 71.25
-        },
-        {
-            "course name": "PHYS 106",
-            "weightings": [
-                {
-                    "weight": 30,
-                    "marks": [],
                     "category": "Homework"
                 },
                 {
-                    "weight": 30,
-                    "marks": [{
-                        "name": "mt12",
-                        "category": "Midterm",
-                        "mark": 80
-                    }],
-                    "category": "Midterm"
-                },
-                {
-                    "weight": 40,
+                    "weight": 50,
                     "marks": [{
                         "name": "Final Exam",
                         "category": "Final",
-                        "mark": 98
+                        "mark": 100
                     }],
                     "category": "Final"
+                },
+                {
+                    "weight": 20,
+                    "marks": [{
+                        "name": "Midterm 2",
+                        "category": "Midterm",
+                        "mark": 97
+                    }],
+                    "category": "Midterm"
                 }
             ],
-            "subject": "Physics",
-            "course grade": 90.28571428571429
+            "subject": "Biology",
+            "course grade": 90.85
+        },
+        {
+            "course name": "CPSC 110",
+            "teacher": "Kemi Ola",
+            "weightings": [{
+                "weight": 100,
+                "marks": [],
+                "category": "All"
+            }],
+            "subject": "Computer Science",
+            "course grade": 100
         }
     ],
-    "last name": "Hu",
-    "first name": "Andy"
+    "last name": "Andyyyyy",
+    "first name": "Huuuu"
 }

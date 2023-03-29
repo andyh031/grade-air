@@ -32,6 +32,7 @@ public class ClassPanel extends JPanel {
         this.setVisible(true);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a label for the class name
     private void makeName(Course course) {
         name = new JLabel(course.getCourseName());
@@ -39,6 +40,7 @@ public class ClassPanel extends JPanel {
         name.setHorizontalAlignment(JLabel.CENTER);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates a label for the class grade
     private void makeGrade(Course course) {
         grade = new JLabel(df.format(course.getCourseGrade()) + "%");
@@ -49,6 +51,7 @@ public class ClassPanel extends JPanel {
         grade.setOpaque(true);
     }
 
+    // Getter
     public Course getCourse() {
         return this.course;
     }
