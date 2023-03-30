@@ -52,6 +52,39 @@
             }],
             "subject": "Computer Science",
             "course grade": 100
+        },
+        {
+            "course name": "CPSC 221",
+            "teacher": "Mr. Pencoff",
+            "weightings": [
+                {
+                    "weight": 40,
+                    "marks": [
+                        {
+                            "name": "PSET 1",
+                            "category": "PSETS",
+                            "mark": 50
+                        },
+                        {
+                            "name": "PSET 2",
+                            "category": "PSETS",
+                            "mark": 100
+                        }
+                    ],
+                    "category": "PSETS"
+                },
+                {
+                    "weight": 60,
+                    "marks": [{
+                        "name": "Final Exam",
+                        "category": "Final",
+                        "mark": 94
+                    }],
+                    "category": "Final"
+                }
+            ],
+            "subject": "Computer Science",
+            "course grade": 86.4
         }
     ],
     "last name": "Andyyyyy",

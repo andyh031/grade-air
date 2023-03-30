@@ -75,7 +75,7 @@ public class HomePanel extends JPanel implements ActionListener {
     //EFFECTS: creates the dashboard label
     private void makeDashboardLabel() {
         dashboard = new JLabel("Dashboard");
-        dashboard.setFont(new Font(dashboard.getName(), Font.PLAIN, 20));
+        dashboard.setFont(new Font(dashboard.getName(), Font.BOLD, 20));
         dashboard.setHorizontalAlignment(JLabel.LEFT);
         this.add(dashboard, gbc);
     }
