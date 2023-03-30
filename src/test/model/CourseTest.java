@@ -4,6 +4,9 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CourseTest extends WeightingTest {
@@ -92,6 +95,14 @@ public class CourseTest extends WeightingTest {
         assertEquals("{\"course name\":\"CPSC 110\",\"weightings\":[{\"weight\":30,\"marks\":[],\"category\":" +
                 "\"midterm\"},{\"weight\":40,\"marks\":[],\"category\":\"final\"}],\"subject\":" +
                 "\"Computer Science\",\"course grade\":100}", json.toString());
+    }
+
+    @Test
+    public void testSetWeightingScheme() {
+        List<Weighting> myList = new ArrayList<>();
+        myList.add(allWeight);
+        course1.setWeightingScheme(myList);
+        assertEquals(allWeight, myList.get(0));
     }
     
 }
