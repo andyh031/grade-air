@@ -4,10 +4,11 @@
 
 package model;
 
+import events.Event;
+import events.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
-
 import java.util.*;
 
 public class Student implements Writable {
@@ -26,6 +27,7 @@ public class Student implements Writable {
     //EFFECTS: adds a course to student's list of courses
     public void addCourse(Course course) {
         courses.add(course);
+        EventLog.getInstance().logEvent(new Event("A new course has been added!"));
     }
 
     //MODIFIES: this

@@ -23,6 +23,7 @@ public class ClassPanel extends JPanel {
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createLineBorder(Color.black, 2));
         this.setBackground(CLASS_PANEL_COLOR);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         makeGrade(course);
         makeName(course);

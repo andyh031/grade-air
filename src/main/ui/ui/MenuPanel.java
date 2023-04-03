@@ -36,7 +36,7 @@ public class MenuPanel extends JPanel {
     //EFFECTS: creates the logo image
     private void makeLogo() {
         ImageIcon logoImage = new ImageIcon(new ImageIcon("images/logo.png")
-                .getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_DEFAULT));
+                .getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_SMOOTH));
         logo = new JLabel();
         logo.setIcon(logoImage);
     }
@@ -45,10 +45,11 @@ public class MenuPanel extends JPanel {
     //EFFECTS: creates the profile image
     private void makeProfile() {
         ImageIcon profileImage = new ImageIcon(new ImageIcon("images/profile.png")
-                .getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_DEFAULT));
+                .getImage().getScaledInstance(BUTTON_SIZE, BUTTON_SIZE, Image.SCALE_SMOOTH));
         profile = new JLabel();
         profile.setIcon(profileImage);
         profile.addMouseListener(new ClickProfileListener());
+        profile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
     public class ClickProfileListener implements MouseListener {
