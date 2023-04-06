@@ -42,7 +42,6 @@ public class Course implements Writable {
         weightingScheme = new ArrayList<>();
     }
 
-
     //MODIFIES: this
     //EFFECTS: adds a mark with category to given category's weighting, and updates course grade automatically
     public void addMarkEntry(MarkEntry markEntry) {
@@ -52,6 +51,8 @@ public class Course implements Writable {
         for (Weighting weight : weightingScheme) {
             if (markEntry.getCategory().equals(weight.getCategory())) {
                 weight.addMarkEntry(markEntry);
+                EventLog.getInstance().logEvent(new Event("A mark of " + markEntry.getMark() + "% has been added to "
+                        + weight.getCategory() + " of " + courseName));
             }
 
             if (weight.getMarksList().size() == 0) {

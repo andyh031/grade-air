@@ -1,14 +1,54 @@
 {
     "courses": [{
-        "course name": "adsf",
-        "weightings": [{
-            "weight": 100,
-            "marks": [],
-            "category": "asdf"
-        }],
-        "subject": "asdf",
-        "course grade": 100
+        "course name": "BIOL 121",
+        "weightings": [
+            {
+                "weight": 10,
+                "marks": [{
+                    "name": "iClicker",
+                    "category": "Participation",
+                    "mark": 100
+                }],
+                "category": "Participation"
+            },
+            {
+                "weight": 30,
+                "marks": [
+                    {
+                        "name": "Midterm 1",
+                        "category": "Midterms",
+                        "mark": 90
+                    },
+                    {
+                        "name": "Miderm 2",
+                        "category": "Midterms",
+                        "mark": 80
+                    }
+                ],
+                "category": "Midterms"
+            },
+            {
+                "weight": 20,
+                "marks": [{
+                    "name": "Homework 1",
+                    "category": "Homework",
+                    "mark": 89
+                }],
+                "category": "Homework"
+            },
+            {
+                "weight": 40,
+                "marks": [{
+                    "name": "Final Exam",
+                    "category": "Final",
+                    "mark": 97
+                }],
+                "category": "Final"
+            }
+        ],
+        "subject": "Biology",
+        "course grade": 92.1
     }],
-    "last name": "ddd",
-    "first name": "ddddd"
+    "last name": "Andy",
+    "first name": "Hu"
 }

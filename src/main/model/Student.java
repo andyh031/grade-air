@@ -27,14 +27,14 @@ public class Student implements Writable {
     //EFFECTS: adds a course to student's list of courses
     public void addCourse(Course course) {
         courses.add(course);
-        EventLog.getInstance().logEvent(new Event("A new course has been added!"));
+        EventLog.getInstance().logEvent(new Event("A new course has been added: " + course.getCourseName()));
     }
 
     //MODIFIES: this
     //EFFECTS: takes in a course and removes it
     public void removeCourse(Course course) {
         courses.remove(course);
-        EventLog.getInstance().logEvent(new Event("A course has been removed!"));
+        EventLog.getInstance().logEvent(new Event("A course has been removed: " + course.getCourseName()));
     }
 
     //MODIFIES: this
@@ -46,6 +46,7 @@ public class Student implements Writable {
                 break;
             }
         }
+        EventLog.getInstance().logEvent(new Event("A course has been removed: " + name));
     }
 
     // EFFECTS: returns a calculation of the student's GPA over all courses
