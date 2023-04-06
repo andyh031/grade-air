@@ -21,6 +21,13 @@ public class StudentTest extends CourseTest {
     }
 
     @Test
+    public void testRemoveCourseWithCourse() {
+        student.addCourse(course1);
+        student.removeCourse(course1);
+        assertEquals(0, student.getCourses().size());
+    }
+
+    @Test
     public void testAddCourseAndRemoveCourse() {
         student.addCourse(course1);
         assertEquals(1, student.getCourses().size());

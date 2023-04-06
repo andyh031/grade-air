@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 /**
- * Represents a student event.
+ * Represents an event when the student is changed.
  */
 public class Event {
     private static final int HASH_CONSTANT = 13;
@@ -13,7 +13,7 @@ public class Event {
     private String description;
 
     /**
-     * Creates an event with the given description
+     * EFFECTS: Creates an event with the given description
      * and the current date/time stamp.
      *
      * @param description a description of the event
@@ -24,7 +24,7 @@ public class Event {
     }
 
     /**
-     * Gets the date of this event (includes time).
+     * EFFECTS: Gets the date of this event (includes time).
      *
      * @return the date of the event
      */
@@ -33,7 +33,7 @@ public class Event {
     }
 
     /**
-     * Gets the description of this event.
+     * EFFECTS: Gets the description of this event.
      *
      * @return the description of the event
      */
@@ -41,6 +41,7 @@ public class Event {
         return description;
     }
 
+    //EFFECTS: Makes events equal when their description and date are the same
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -54,11 +55,13 @@ public class Event {
                 && this.description.equals(otherEvent.description));
     }
 
+    //EFFECTS: Generate the hascode for an event
     @Override
     public int hashCode() {
         return (HASH_CONSTANT * dateLogged.hashCode() + description.hashCode());
     }
 
+    //EFFECTS: makes the log event pretty
     @Override
     public String toString() {
         return dateLogged.toString() + "\n" + description;
