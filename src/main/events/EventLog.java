@@ -11,17 +11,17 @@ import java.util.Iterator;
  * to the single instance of the EventLog.
  */
 public class EventLog implements Iterable<Event> {
-	/** the only EventLog in the system (Singleton Design Pattern) */
-	private static EventLog theLog;
-	private Collection<Event> events;
+	 /** the only EventLog in the system (Singleton Design Pattern) */
+	 private static EventLog theLog;
+	 private Collection<Event> events;
 	
-	/** 
-	 * Prevent external construction.
-	 * (Singleton Design Pattern).
-	 */
-	private EventLog() {
-		events = new ArrayList<Event>();
-	}
+	 /**
+	  * Prevent external construction.
+	  * (Singleton Design Pattern).
+	  */
+	 private EventLog() {
+		 events = new ArrayList<Event>();
+	 }
 	
 	/**
 	 * Gets instance of EventLog - creates it
@@ -29,11 +29,11 @@ public class EventLog implements Iterable<Event> {
 	 * (Singleton Design Pattern)
 	 * @return  instance of EventLog
 	 */
-	public static EventLog getInstance() {
-		if (theLog == null)
-			theLog = new EventLog();
-		
-		return theLog;
+    public static EventLog getInstance() {
+        if (theLog == null) {
+            theLog = new EventLog();
+        }
+        return theLog;
 	}
 	
 	/**

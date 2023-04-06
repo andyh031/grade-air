@@ -2,6 +2,8 @@
 
 package ui;
 
+import events.Event;
+import events.EventLog;
 import ui.ui.forms.LoginForm;
 
 public class Main {
@@ -12,5 +14,8 @@ public class Main {
 //
     public static void main(String[] args) {
         new LoginForm();
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString());
+        }
     }
 }

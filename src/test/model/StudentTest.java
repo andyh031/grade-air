@@ -30,16 +30,16 @@ public class StudentTest extends CourseTest {
         assertEquals(2, student.getCourses().size());
         assertEquals(course2, student.getCourses().get(1));
 
-        student.removeCourse("CPSC 110");
+        student.removeCourseByName("CPSC 110");
         assertEquals(1, student.getCourses().size());
 
-        student.removeCourse("A");
+        student.removeCourseByName("A");
         assertEquals(1, student.getCourses().size());
 
-        student.removeCourse("CPSC 210");
+        student.removeCourseByName("CPSC 210");
         assertEquals(0, student.getCourses().size());
 
-        student.removeCourse("A");
+        student.removeCourseByName("A");
         assertEquals(0, student.getCourses().size());
     }
 

@@ -2,6 +2,8 @@
 
 package model;
 
+import events.Event;
+import events.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -25,6 +27,7 @@ public class Weighting implements Writable {
     //EFFECTS: adds a mark entry to student's list of marks
     public void addMarkEntry(MarkEntry markEntry) {
         marksList.add(markEntry);
+        EventLog.getInstance().logEvent(new Event("A mark has been added to a course!"));
     }
 
     //EFFECTS: retrieves all of the student's marks in a given weighting to print

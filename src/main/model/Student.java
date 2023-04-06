@@ -31,8 +31,15 @@ public class Student implements Writable {
     }
 
     //MODIFIES: this
+    //EFFECTS: takes in a course and removes it
+    public void removeCourse(Course course) {
+        courses.remove(course);
+        EventLog.getInstance().logEvent(new Event("A course has been removed!"));
+    }
+
+    //MODIFIES: this
     //EFFECTS: removes course from student's list of courses
-    public void removeCourse(String name) {
+    public void removeCourseByName(String name) {
         for (Course course : courses) {
             if (name.equals(course.getCourseName())) {
                 courses.remove(course);

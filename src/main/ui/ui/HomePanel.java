@@ -133,7 +133,7 @@ public class HomePanel extends JPanel implements ActionListener {
                     new ClassInfoFrame(student, panel.getCourse());
                     gaf.dispose();
                 } else {
-                    student.getCourses().remove(panel.getCourse());
+                    student.removeCourse(panel.getCourse());
                     gaf.dispose();
                     new GradeAirFrame(student);
                 }

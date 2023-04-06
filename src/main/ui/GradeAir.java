@@ -140,7 +140,7 @@ public class GradeAir {
             case REMOVE_COURSE:
                 System.out.println("What course would you like to remove?");
                 String courseToRemove = makePrettyUpperCase(scanner.nextLine());
-                student.removeCourse(courseToRemove);
+                student.removeCourseByName(courseToRemove);
                 homepage();
             case SORT:
                 sort();
