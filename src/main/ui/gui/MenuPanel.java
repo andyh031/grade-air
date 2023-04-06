@@ -1,9 +1,9 @@
 // Represents the menu panel on the left hand side for the user to view their account information
 
-package ui.ui;
+package ui.gui;
 
 import model.Student;
-import ui.ui.forms.InformationFrame;
+import ui.gui.forms.InformationForm;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -52,12 +52,12 @@ public class MenuPanel extends JPanel {
         profile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    public class ClickProfileListener implements MouseListener {
+    private class ClickProfileListener implements MouseListener {
         //EFFECTS: if user hits profile, open up user account information
         @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getSource() == profile) {
-                new InformationFrame(student);
+                new InformationForm(student);
             }
         }
 

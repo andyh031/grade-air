@@ -1,6 +1,6 @@
 //EFFECTS: creates the grade air application home screen, with a menu panel on the side and a home panel with classes
 
-package ui.ui;
+package ui.gui;
 
 import events.Event;
 import events.EventLog;

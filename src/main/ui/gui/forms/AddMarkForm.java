@@ -1,12 +1,12 @@
 // A popup window for the user to add a mark to a class
 
-package ui.ui.forms;
+package ui.gui.forms;
 
 import model.Course;
 import model.MarkEntry;
 import model.Student;
 import model.Weighting;
-import ui.ui.ClassInfoFrame;
+import ui.gui.ClassInfoFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,7 +31,7 @@ public class AddMarkForm extends Form {
         super("Add Mark");
         this.student = student;
         this.course = course;
-        this.addWindowListener(new CloseWindow());
+        this.addWindowListener(new CloseMarkForm());
         weightingsArray(course);
 
         makeHeading("Add a Mark");
@@ -99,7 +99,7 @@ public class AddMarkForm extends Form {
     }
 
     // Operation upon closing window
-    public class CloseWindow implements WindowListener {
+    private class CloseMarkForm implements WindowListener {
 
         @Override
         public void windowOpened(WindowEvent e) {

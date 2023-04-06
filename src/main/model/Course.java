@@ -86,15 +86,19 @@ public class Course implements Writable {
 
     //Setters
     public void setCourseName(String courseName) {
+        String prev = this.courseName;
         this.courseName = courseName;
+        EventLog.getInstance().logEvent(new Event(prev + " has been changed to " + courseName));
     }
 
     public void setSubject(String subject) {
         this.subject = subject;
+        EventLog.getInstance().logEvent(new Event(courseName + "'s subject has been changed to " + subject));
     }
 
     public void setTeacher(String teacher) {
         this.teacher = teacher;
+        EventLog.getInstance().logEvent(new Event(courseName + "'s teacher been changed to " + teacher));
     }
 
     public void setWeightingScheme(List<Weighting> weightingList) {

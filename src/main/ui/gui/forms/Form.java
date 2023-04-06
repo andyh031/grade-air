@@ -1,6 +1,6 @@
 // Abstract class representing a general form (where users must input fields)
 
-package ui.ui.forms;
+package ui.gui.forms;
 
 import model.Student;
 import javax.swing.*;

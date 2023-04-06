@@ -40,7 +40,6 @@ public class GradeAir {
     private static final String SAVE = "save";
     private static final String LOAD = "load";
 
-
     private static final String JSON_STORE = "./data/student.json";
     private Scanner scanner;
     private Student student;

@@ -1,54 +1,30 @@
 {
     "courses": [{
         "course name": "BIOL 121",
+        "teacher": "Lynn Norman",
         "weightings": [
             {
-                "weight": 10,
+                "weight": 50,
                 "marks": [{
-                    "name": "iClicker",
-                    "category": "Participation",
-                    "mark": 100
+                    "name": "Assignment 1",
+                    "category": "Assignments",
+                    "mark": 67
                 }],
-                "category": "Participation"
+                "category": "Assignments"
             },
             {
-                "weight": 30,
-                "marks": [
-                    {
-                        "name": "Midterm 1",
-                        "category": "Midterms",
-                        "mark": 90
-                    },
-                    {
-                        "name": "Miderm 2",
-                        "category": "Midterms",
-                        "mark": 80
-                    }
-                ],
-                "category": "Midterms"
-            },
-            {
-                "weight": 20,
-                "marks": [{
-                    "name": "Homework 1",
-                    "category": "Homework",
-                    "mark": 89
-                }],
-                "category": "Homework"
-            },
-            {
-                "weight": 40,
+                "weight": 50,
                 "marks": [{
                     "name": "Final Exam",
                     "category": "Final",
-                    "mark": 97
+                    "mark": 90
                 }],
                 "category": "Final"
             }
         ],
         "subject": "Biology",
-        "course grade": 92.1
+        "course grade": 78.5
     }],
-    "last name": "Andy",
-    "first name": "Hu"
+    "last name": "Doe",
+    "first name": "Bob"
 }

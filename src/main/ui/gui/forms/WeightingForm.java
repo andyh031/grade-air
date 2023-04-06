@@ -1,12 +1,12 @@
 // Creates a form for the make a new class: they must provide the class name, subject, and give
 // the weighting scheme for the class
 
-package ui.ui.forms;
+package ui.gui.forms;
 
 import model.Course;
 import model.Student;
 import model.Weighting;
-import ui.ui.GradeAirFrame;
+import ui.gui.GradeAirFrame;
 
 import javax.swing.*;
 import java.awt.*;

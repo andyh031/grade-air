@@ -1,6 +1,6 @@
 // A popup window to change account information (first and last name)
 
-package ui.ui.forms;
+package ui.gui.forms;
 
 import model.Student;
 

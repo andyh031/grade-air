@@ -1,11 +1,11 @@
 // Represents the panel of the home screen with all of the classes, overall student GPA
 
-package ui.ui;
+package ui.gui;
 
 import model.Course;
 import model.Student;
 import persistence.JsonWriter;
-import ui.ui.forms.WeightingForm;
+import ui.gui.forms.WeightingForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -124,7 +124,7 @@ public class HomePanel extends JPanel implements ActionListener {
 
     //MODIFIES: this
     //EFFECTS: if user clicks a class panel, remove it if remove button is on, else open up the class information frame
-    public class ClickClassListener implements MouseListener {
+    private class ClickClassListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getSource() instanceof ClassPanel) {

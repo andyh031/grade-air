@@ -4,7 +4,7 @@ package ui;
 
 import events.Event;
 import events.EventLog;
-import ui.ui.forms.LoginForm;
+import ui.gui.forms.LoginForm;
 
 public class Main {
 //    public static void main(String[] args) {

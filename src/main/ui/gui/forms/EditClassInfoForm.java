@@ -1,11 +1,11 @@
 // A popup window for the user to edit the course information of a class, specifically,
 // course name, subject, and teacher name
 
-package ui.ui.forms;
+package ui.gui.forms;
 
 import model.Course;
 import model.Student;
-import ui.ui.ClassInfoFrame;
+import ui.gui.ClassInfoFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +26,7 @@ public class EditClassInfoForm extends Form {
         super("Class Information");
         this.student = student;
         this.course = course;
-        this.addWindowListener(new CloseWindow());
+        this.addWindowListener(new CloseClassForm());
 
         makeHeading("Course Information");
         makeCourseNameField(course);
@@ -81,7 +81,7 @@ public class EditClassInfoForm extends Form {
     }
 
     //Window closing operations
-    public class CloseWindow implements WindowListener {
+    private class CloseClassForm implements WindowListener {
 
         @Override
         public void windowOpened(WindowEvent e) {

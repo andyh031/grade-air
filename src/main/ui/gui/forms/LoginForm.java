@@ -1,10 +1,10 @@
 // Initial frame for user to either register for the application or load their pre-existing accout
 
-package ui.ui.forms;
+package ui.gui.forms;
 
 import model.Student;
 import persistence.JsonReader;
-import ui.ui.GradeAirFrame;
+import ui.gui.GradeAirFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,6 @@ public class LoginForm extends Form {
     private JTextField userFirstName;
     private JTextField userLastName;
     private JButton loadButton;
-    private Student student;
     private JsonReader jsonReader;
 
     // EFFECTS: creates the login form with heading, first and last name fields, a submit and load button, and

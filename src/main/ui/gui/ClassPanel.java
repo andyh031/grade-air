@@ -1,6 +1,6 @@
 // Represents a panel for a class on the home screen, displaying the average for the class and its name
 
-package ui.ui;
+package ui.gui;
 
 import model.Course;
 
@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 
-import static ui.ui.HomePanel.CLASS_PANEL_COLOR;
+import static ui.gui.HomePanel.CLASS_PANEL_COLOR;
 
 public class ClassPanel extends JPanel {
     private static final DecimalFormat df = new DecimalFormat("0.00");

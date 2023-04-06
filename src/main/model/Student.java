@@ -91,10 +91,12 @@ public class Student implements Writable {
     //Setters
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+        EventLog.getInstance().logEvent(new Event("Student first name changed to: " + firstName));
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+        EventLog.getInstance().logEvent(new Event("Student last name changed to: " + lastName));
     }
 
     // EFFECTS: creates a student JSON object

@@ -1,13 +1,13 @@
 // Displays a specific class' information to the user
 
-package ui.ui;
+package ui.gui;
 
 import model.Course;
 import model.MarkEntry;
 import model.Student;
 import model.Weighting;
-import ui.ui.forms.AddMarkForm;
-import ui.ui.forms.EditClassInfoForm;
+import ui.gui.forms.AddMarkForm;
+import ui.gui.forms.EditClassInfoForm;
 
 import javax.swing.*;
 import javax.swing.border.Border;

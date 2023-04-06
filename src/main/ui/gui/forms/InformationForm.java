@@ -1,17 +1,16 @@
 // Represents a frame showing the user their first name and last name, with a button to edit these fields
 
-package ui.ui.forms;
+package ui.gui.forms;
 
 import model.Student;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class InformationFrame extends Form {
-    private Student student;
+public class InformationForm extends Form {
 
     // EFFECTS: creates a frame showing user information with a button to prompt user to change these fields
-    public InformationFrame(Student student) {
+    public InformationForm(Student student) {
         super("Account Information");
         this.student = student;
 
