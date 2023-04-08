@@ -66,6 +66,7 @@ public class Student implements Writable {
     //EFFECTS: sorts the courses in alphabetical order (a -> z)
     public void sortCoursesAlphabetical() {
         courses.sort(Comparator.comparing(Course::getCourseName));
+        EventLog.getInstance().logEvent(new Event("Courses have been sorted alphabetically"));
     }
 
     //MODIFIES: this
@@ -73,6 +74,7 @@ public class Student implements Writable {
     public void sortCoursesByGrade() {
         courses.sort(Comparator.comparing(Course::getCourseGrade));
         Collections.reverse(courses);
+        EventLog.getInstance().logEvent(new Event("Courses have been sorted by grade"));
     }
 
     //Getters
